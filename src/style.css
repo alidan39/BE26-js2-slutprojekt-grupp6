@@ -36,6 +36,10 @@ h1 {
   cursor: pointer;
 }
 
+#newProjectWrapper, #newMemberWrapper {
+  display: none;
+}
+
 .newDiv {
   border: 1px solid #010101;
   border-radius: 5px;
