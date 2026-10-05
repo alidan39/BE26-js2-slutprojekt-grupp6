@@ -1,6 +1,6 @@
 export type Category = 'frontend' | 'backend' | 'ux';
 export type TaskStatus = 'new' | 'in-progress' | 'done';
-export type Priority = 1 | 2 | 3
+export type Priority = 1 | 2 | 3;
 
 export interface Project {
     id: string;
