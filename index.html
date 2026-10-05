@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>be26-js2-slutprojekt-grupp6</title>
-    <link rel="stylesheet" href="/public/src/style.css">
+    <link rel="stylesheet" href="/src/style.css">
   </head>
   <body>
 
@@ -12,19 +12,73 @@
   <h1>Async Scrum Board</h1>
 
   <div class="allFormsDiv">
-    <button>+ New project</button>
-    <button>+ New member</button>
+    <button id="newProjectBtn" class="newBtn">+ New project</button>
+      <aside id="newProjectWrapper">
+        <div class="newDiv">
+          <span id="closeProjectBtn" class="closeBtn">&times;</span>
+          <h2>Create new project</h2>
+          <form id="newProjectForm">
+            <label for="">Project name:</label>
+            <input type="text">
+            <br>
+            <label for="">Description:</label>
+            <br>
+            <textarea name="" id=""></textarea>
+            <br>
+            <label for="">Deadline:</label>
+            <input type="date">
+            <br>
+            <label for="">Add members:</label>
+            <br>
+            <input type="submit" value="Add Project" class="submitBtn">
+          </form>
+        </div>
+      </aside>
+    <button id="newMemberBtn" class="newBtn">+ New member</button>
+      <aside id="newMemberWrapper">
+        <div class="newDiv">
+          <span id="closeMemberBtn" class="closeBtn">&times;</span>
+          <h2>Add New Member</h2>
+          <form id="newMemberForm">
+            <label for="">Name:</label>
+            <input type="text" name="" id="">
+            <br>
+            <p>Category:</p>
+              <input type="radio">
+              <label for="">Frontend</label>
+              <input type="radio">
+              <label for="">Backend</label>
+              <input type="radio">
+              <label for="">UX</label>
+            <br>
+            <input type="submit" value="Add Member" class="submitBtn">
+          </form>
+        </div>
+      </aside>
   </div>
 
 </header>
 
 <main>
-
+  <section class="gridSection">
+    <div class="gridWrapper">
+      <div class="div1">To Do:</div>
+      <div class="div2">On Going:</div>
+      <div class="div3">Done:</div>
+      <div class="div4" id="todoDiv">4</div>
+      <div class="div5" id="ongoingDiv">5</div>
+      <div class="div6" id="doneDiv">6</div>
+    </div>
+  </section>
+  <aside>
+    <button class="filterBtn">Filter</button>
+    <button class="filterBtn">Sort</button>
+  </aside>
 </main>
 
 <footer>
-  <a href="allprojects.html">All Projects</a>
-  <a href="allMembers.html">All Members</a>
+  <a href="allprojects.html" class="allFooterBtn">All Projects</a>
+  <a href="allMembers.html" class="allFooterBtn">All Members</a>
 </footer>
 
 
