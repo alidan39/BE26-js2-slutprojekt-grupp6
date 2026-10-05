@@ -1,5 +1,6 @@
 import { BASE_URL } from './config';
-import type { Member, FirebaseMembers } from '../types/types';
+import type { Member, FirebaseMember, FirebaseMembers } from '../types/types';
+
 
 // Hämtar alla medlemmar och gör om dem till en array med id inkluderat
 export async function getMembers(): Promise<Member[]> {
@@ -24,4 +25,25 @@ export async function getMembers(): Promise<Member[]> {
     }
 
     return members;
+}
+
+// Skapar en ny medlem i Firebase och returnerar det nya id:t
+export async function postMember(newMember: FirebaseMember): Promise<string> {
+    const options = {
+        method: 'POST',
+        body: JSON.stringify(newMember),
+        headers: {
+            'Content-type': 'application/json'
+        }
+    };
+
+    const response = await fetch(`${BASE_URL}/members.json`, options);
+
+    if (!response.ok) {
+        throw new Error('Kunde inte skapa medlem');
+    }
+
+    // Firebase svarar med { name: "<nytt id>" }
+    const data: { name: string } = await response.json();
+    return data.name;
 }
