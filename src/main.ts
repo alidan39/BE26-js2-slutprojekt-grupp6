@@ -7,7 +7,7 @@ const newMemberWrapper = document.getElementById('newMemberWrapper')
 const closeMemberBtn = document.getElementById('closeMemberBtn')
 
 newProjectBtn.addEventListener('click', () => {
-    newProjectWrapper.style.display = 'block'
+    newProjectWrapper.style.display = 'flex'
 })
 
 closeProjectBtn.addEventListener('click', () => {
@@ -15,7 +15,7 @@ closeProjectBtn.addEventListener('click', () => {
 })
 
 newMemberBtn.addEventListener('click', () => {
-    newMemberWrapper.style.display = 'block'
+    newMemberWrapper.style.display = 'flex'
 })
 
 closeMemberBtn.addEventListener('click', () => {
