@@ -1,5 +1,5 @@
 import { BASE_URL } from './config';
-import type { Project, FirebaseProjects } from '../types/types';
+import type { Project, FirebaseProject, FirebaseProjects } from '../types/types';
 
 // Hämtar alla projekt och gör om dem till en array med id inkluderat
 export async function getProjects(): Promise<Project[]> {
@@ -27,4 +27,25 @@ export async function getProjects(): Promise<Project[]> {
     }
 
     return projects;
+}
+
+// Skapar ett nytt projekt i Firebase och returnerar det nya id:t
+export async function postProject(newProject: FirebaseProject): Promise<string> {
+    const options = {
+        method: 'POST',
+        body: JSON.stringify(newProject),
+        headers: {
+            'Content-type': 'application/json'
+        }
+    };
+
+    const response = await fetch(`${BASE_URL}/projects.json`, options);
+
+    if (!response.ok) {
+        throw new Error('Kunde inte skapa projekt');
+    }
+
+    // Firebase svarar med { name: "<nytt id>" }
+    const data: { name: string } = await response.json();
+    return data.name;
 }
