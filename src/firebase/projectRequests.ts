@@ -1,5 +1,5 @@
-import { BASE_URL } from './config';
-import type { Project, FirebaseProject, FirebaseProjects } from '../types/types';
+import { BASE_URL } from './config.ts';
+import type { Project, FirebaseProject, FirebaseProjects } from '../types/types.ts';
 
 // Hämtar alla projekt och gör om dem till en array med id inkluderat
 export async function getProjects(): Promise<Project[]> {

@@ -18,19 +18,6 @@ export interface Member {
     activeTasks: number;
 }
 
-export interface Task {
-    id: string;
-    title: string;
-    description: string;
-    category: Category;
-    taskStatus: TaskStatus;
-    priority: Priority;
-    deadline: string;
-    createdAt: number;
-    memberId?: string;
-    completedAt?: number;
-}
-
 // Så ligger datan i Firebase: id:t är inte med i objektet, det är nyckeln utanför
 export interface FirebaseProject {
     name: string;

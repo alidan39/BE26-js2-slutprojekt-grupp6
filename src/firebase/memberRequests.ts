@@ -1,5 +1,5 @@
-import { BASE_URL } from './config';
-import type { Member, FirebaseMember, FirebaseMembers } from '../types/types';
+import { BASE_URL } from './config.ts';
+import type { Member, FirebaseMember, FirebaseMembers } from '../types/types.ts';
 
 
 // Hämtar alla medlemmar och gör om dem till en array med id inkluderat

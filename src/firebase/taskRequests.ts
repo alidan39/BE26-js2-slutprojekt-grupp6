@@ -1,6 +1,7 @@
-import { BASE_URL } from './config';
-import { addTaskToProject } from './projectRequests';
-import type { Task, FirebaseTask, FirebaseTasks } from '../types/types';
+import { BASE_URL } from './config.ts';
+import { addTaskToProject } from './projectRequests.ts';
+import { Task } from '../classes/Task.ts';
+import type { FirebaseTask, FirebaseTasks } from '../types/types.ts';
 
 // Hämtar alla uppgifter och gör om dem till en array med id inkluderat
 export async function getTasks(): Promise<Task[]> {
@@ -16,20 +17,8 @@ export async function getTasks(): Promise<Task[]> {
     if (!data) return tasks;
 
     for (const id in data) {
-        tasks.push({
-            id: id,
-            title: data[id].title,
-            description: data[id].description,
-            category: data[id].category,
-            taskStatus: data[id].taskStatus,
-            priority: data[id].priority,
-            deadline: data[id].deadline,
-            createdAt: data[id].createdAt,
-            memberId: data[id].memberId,       
-            completedAt: data[id].completedAt  
-        });
-    }
-
+       tasks.push(new Task(id, data[id]));
+}
     return tasks;
 }
 
