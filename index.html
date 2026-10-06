@@ -19,15 +19,15 @@
           <span id="closeProjectBtn" class="closeBtn">&times;</span>
           <h2>Create new project</h2>
           <form id="newProjectForm">
-            <label for="">Project name:</label>
-            <input type="text">
+            <label for="pName">Project name:</label>
+            <input type="text" id="pName">
             <br>
-            <label for="">Description:</label>
+            <label for="desDiv">Description:</label>
             <br>
-            <textarea name="" id=""></textarea>
+            <textarea id="desDiv"></textarea>
             <br>
-            <label for="">Deadline:</label>
-            <input type="date">
+            <label for="deadline">Deadline:</label>
+            <input type="date" id="deadline">
             <br>
             <label for="">Add members:</label>
             <div id="addMemberWrapper">
@@ -44,15 +44,18 @@
           <span id="closeMemberBtn" class="closeBtn">&times;</span>
           <h2>Add New Member</h2>
           <form id="newMemberForm">
-            <label for="">Name:</label>
-            <input type="text" name="" id="">
+            <label for="mName">Name:</label>
+            <input type="text" name="mName" id="mName">
             <br>
-            <p>Category:</p>
-              <input type="radio" id="frontend" name="category">
+            <label for="category">Category:</label>
+            <br>
+              <input type="radio" id="frontend" name="category" value="frontend">
               <label for="">Frontend</label>
-              <input type="radio" id="backend" name="category">
+              <br>
+              <input type="radio" id="backend" name="category" value="backend">
               <label for="">Backend</label>
-              <input type="radio" id="ux" name="category">
+              <br>
+              <input type="radio" id="ux" name="category" value="ux">
               <label for="">UX</label>
             <br>
             <input type="submit" value="Add Member" class="submitBtn" id="submitBtn">
