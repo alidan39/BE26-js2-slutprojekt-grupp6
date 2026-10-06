@@ -21,8 +21,8 @@ export async function getProjects(): Promise<Project[]> {
             description: data[id].description,
             deadline: data[id].deadline,
             // Tomma arrayer sparas inte i Firebase, så de kan saknas
-            memberIds: data[id].memberIds ?? [],
-            taskIds: data[id].taskIds ?? []
+            memberIds: data[id].memberIds || [],
+            taskIds: data[id].taskIds || []
         });
     }
 
@@ -61,7 +61,7 @@ export async function addTaskToProject(projectId: string, taskId: string): Promi
 
     // null om projektet inte har några uppgifter än
     const taskIds: string[] | null = await getResponse.json();
-    const updatedTaskIds = [...(taskIds ?? []), taskId];
+    const updatedTaskIds = [...(taskIds || []), taskId];
 
     // PUT ersätter hela arrayen, POST hade skapat ett Firebase-id och förstört arrayen
     const options = {
