@@ -10,17 +10,27 @@ min-height: 100vh;
 }
 
 body {
-  background: linear-gradient(180deg,#2c4580,#111827);
+  background: #0B1120;
+/*  background: #111827;*/
   display: flex;
   flex-direction: column;
 }
 
 header {
-  background-color: rgb(102,73,139);
+/*  background-color: rgb(85, 53, 128);*/
+  background: #182235;
+  /*background: #1E293B;*/
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 20px 0;
+  box-shadow: 1px 1px 15px #6b38c9;
+/*  box-shadow: 0 0 .2rem #fff,
+            0 0 .2rem #80299b,
+            0 0 2rem #bc13fe,
+            0 0 0.8rem #8523ac,
+            0 0 2.8rem #732094,
+            0 0 1.3rem #bc13fe; */
 }
 
 h1 {
@@ -93,18 +103,46 @@ box-shadow:
   transform:rotate(360deg);
   text-shadow: 0 0 10px #FF4D6D;
 }
-
+/*
+#newProjectForm, #newMemberForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1px 5px;
+}
+*/
 h2 {
   text-align: center;
   margin-bottom: 15px;
+  background:linear-gradient(90deg,#60A5FA,#A855F7);
+  -webkit-background-clip: text;
+  color: transparent;
 }
 
 form label, p {
   font-weight: 600;
   font-size: 1.1rem;
+  color: white;
+/*  background:linear-gradient(90deg,#60A5FA,#A855F7);
+  -webkit-background-clip: text;
+  color: transparent;*/
 }
 
-.submitBtn {
+#addMemberWrapper {
+/*  border: 1px solid #f5ebeb;*/
+  box-shadow: 0 0 5px #ffffff;
+  border-radius: 5px;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.memberWrapper {
+  border: 1px solid #A855F7;
+  border-radius: 3px;
+  padding: 3px 5px;
+
+}
+
+#submitBtn {
   padding: 3px 8px;
   display: block;
   margin: 15px auto 0 auto;
@@ -133,16 +171,22 @@ main {
 }
 
 .div1, .div2, .div3 {
-  border-bottom: 1px solid #822daa;
+/*  border-bottom: 2px solid rgba(50, 71, 99, 0.4);*/
+  border-bottom: 1px solid #6b38c99d;
   padding: 1rem;
   font-weight: bold;
   text-align: center;
   font-size: 1.4rem;
+  background:linear-gradient(90deg,#60A5FA,#A855F7);
+  -webkit-background-clip: text;
+  color: transparent;
 }
 
 .div2, .div5 {
-  border-left: 1px solid #822daa;
-  border-right: 1px solid #822daa;
+/*  border-left: 2px solid rgba(50, 71, 99, 0.4);
+  border-right: 2px solid rgba(50, 71, 99, 0.4);*/
+  border-left: 1px solid #6b38c99d;
+  border-right: 1px solid #6b38c99d;
 }
 
 main aside {
@@ -166,11 +210,14 @@ main aside {
 
 /*----------FOOTER----------*/
 footer {
-  background-color: rgb(102, 73, 139);
+  background: #182235;
+/*  background-color: rgb(85, 53, 128);*/
   display: flex;
   justify-content: center;
   margin-top: auto;
   padding: 20px 0;
+/*  box-shadow: 1px 1px 15px #a738c9;*/
+box-shadow: 1px 1px 15px #6b38c9;
 }
 
 /*----------EXTERN HTML FILES---------*/
