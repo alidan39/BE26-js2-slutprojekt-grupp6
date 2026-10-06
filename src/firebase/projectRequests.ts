@@ -78,3 +78,32 @@ export async function addTaskToProject(projectId: string, taskId: string): Promi
         throw new Error('Failed to add task to project');
     }
 }
+
+// Tar bort en uppgifts id från projektets taskIds
+export async function removeTaskFromProject(projectId: string, taskId: string): Promise<void> {
+    // Hämta projektets nuvarande taskIds
+    const getResponse = await fetch(`${BASE_URL}/projects/${projectId}/taskIds.json`);
+
+    if (!getResponse.ok) {
+        throw new Error('Failed to fetch project tasks');
+    }
+
+    // null om projektet inte har några uppgifter
+    const taskIds: string[] | null = await getResponse.json();
+    const updatedTaskIds = (taskIds || []).filter(id => id !== taskId);
+
+    // PUT ersätter hela arrayen med den nya utan det borttagna id:t
+    const options = {
+        method: 'PUT',
+        body: JSON.stringify(updatedTaskIds),
+        headers: {
+            'Content-type': 'application/json'
+        }
+    };
+
+    const putResponse = await fetch(`${BASE_URL}/projects/${projectId}/taskIds.json`, options);
+
+    if (!putResponse.ok) {
+        throw new Error('Failed to remove task from project');
+    }
+}

@@ -45,6 +45,12 @@ export interface FirebaseTask {
     completedAt?: number;
 }
 
+// En arkiverad uppgift: uppgiften som den var, plus vilket projekt den kom från
+export interface FirebaseArchive {
+    projectId: string;
+    task: FirebaseTask;
+}
+
 export type FirebaseProjects = Record<string, FirebaseProject>;
 export type FirebaseMembers = Record<string, FirebaseMember>;
 export type FirebaseTasks = Record<string, FirebaseTask>;
