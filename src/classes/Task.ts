@@ -39,7 +39,7 @@ export class Task {
         const response = await fetch(`${BASE_URL}/tasks/${this.id}.json`, options);
 
         if (!response.ok) {
-            throw new Error('Kunde inte ändra deadline');
+            throw new Error('Failed to update deadline');
         }
 
         this.deadline = newDeadline;
@@ -57,7 +57,7 @@ export class Task {
         const response = await fetch(`${BASE_URL}/tasks/${this.id}.json`, options);
 
         if (!response.ok) {
-            throw new Error('Kunde inte ändra priority');
+            throw new Error('Failed to update priority');
         }
 
         this.priority = newPriority;
