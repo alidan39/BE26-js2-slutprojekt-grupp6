@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="sv">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Projekt</title>
+
+    <link rel="stylesheet" href="/src/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dongle&family=Text+Me+One&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <header>
+      <h1 id="projectName">Projekt</h1>
+
+      <div>
+        <a href="index.html" class="allBtn">Home</a>
+        <a href="allProjects.html" class="allBtn">Alla projekt</a>
+      </div>
+    </header>
+
+    <main>
+      <section>
+        <h2 id="projectDescription"></h2>
+        <p id="projectDeadline"></p>
+      </section>
+
+      <section>
+        <h2>Uppgifter</h2>
+
+        <div>
+          <h3>Nya</h3>
+          <div id="newTasks"></div>
+        </div>
+
+        <div>
+          <h3>Pågående</h3>
+          <div id="inProgressTasks"></div>
+        </div>
+
+        <div>
+          <h3>Slutförda</h3>
+          <div id="doneTasks"></div>
+        </div>
+      </section>
+    </main>
+
+    <script type="module" src="/src/pages/project.ts"></script>
+  </body>
+</html>

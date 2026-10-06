@@ -1,0 +1,116 @@
+{
+  "members": {
+    "m1": {
+      "name": "Anna",
+      "category": "frontend",
+      "activeTasks": 1
+    },
+    "m2": {
+      "name": "Erik",
+      "category": "backend",
+      "activeTasks": 1
+    },
+    "m3": {
+      "name": "Rolf",
+      "category": "ux",
+      "activeTasks": 0
+    },
+    "m4": {
+      "name": "Linn",
+      "category": "frontend",
+      "activeTasks": 1
+    }
+  },
+  "projects": {
+    "p1": {
+      "name": "Webbshop",
+      "description": "En webbshop för second hand-kläder",
+      "deadline": "2026-11-20",
+      "memberIds": [
+        "m1",
+        "m2",
+        "m3"
+      ],
+      "taskIds": [
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ]
+    },
+    "p2": {
+      "name": "Bokningsapp",
+      "description": "App för att boka tvättstuga",
+      "deadline": "2026-12-15",
+      "memberIds": [
+        "m2",
+        "m4"
+      ],
+      "taskIds": [
+        "t5",
+        "t6"
+      ]
+    }
+  },
+  "tasks": {
+    "t1": {
+      "title": "Bygg startsidan",
+      "description": "Hero, produktlista och footer",
+      "category": "frontend",
+      "taskStatus": "new",
+      "priority": 2,
+      "deadline": "2026-10-30",
+      "createdAt": 1790586000000
+    },
+    "t2": {
+      "title": "API för produkter",
+      "description": "Endpoints för att hämta och skapa produkter",
+      "category": "backend",
+      "taskStatus": "in-progress",
+      "priority": 1,
+      "deadline": "2026-10-25",
+      "createdAt": 1790677800000,
+      "memberId": "m2"
+    },
+    "t3": {
+      "title": "Wireframes för kassan",
+      "description": "Skisser för kassaflödet i tre steg",
+      "category": "ux",
+      "taskStatus": "done",
+      "priority": 1,
+      "deadline": "2026-10-10",
+      "createdAt": 1790773200000,
+      "memberId": "m3",
+      "completedAt": 1791036000000
+    },
+    "t4": {
+      "title": "Varukorg",
+      "description": "Lägg till, ta bort och visa totalsumma",
+      "category": "frontend",
+      "taskStatus": "in-progress",
+      "priority": 3,
+      "deadline": "2026-11-05",
+      "createdAt": 1790846100000,
+      "memberId": "m1"
+    },
+    "t5": {
+      "title": "Databasmodell",
+      "description": "Tabeller för bokningar och användare",
+      "category": "backend",
+      "taskStatus": "new",
+      "priority": 3,
+      "deadline": "2026-11-15",
+      "createdAt": 1790938800000
+    },
+    "t6": {
+      "title": "Bokningskalender",
+      "description": "Veckovy med lediga tider",
+      "category": "frontend",
+      "taskStatus": "in-progress",
+      "priority": 2,
+      "deadline": "2026-11-30",
+      "createdAt": 1791129600000,
+      "memberId": "m4"
+    }
+  }
+}

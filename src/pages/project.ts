@@ -1,4 +1,5 @@
-import type { Project, Member, Task } from "../types/types";
+import type { Project, Member } from "../types/types";
+import { Task } from "../classes/Task";
 import { TaskCard } from "../components/TaskCard";
 
 const testProject: Project = {
@@ -32,8 +33,7 @@ const testMembers: Member[] = [
 ];
 
 const testTasks: Task[] = [
-  {
-    id: "task-1",
+  new Task("task-1", {
     title: "Bygga startsida",
     description: "Skapa startsidan",
     category: "frontend",
@@ -41,9 +41,8 @@ const testTasks: Task[] = [
     priority: 2,
     deadline: "2026-10-10",
     createdAt: Date.now(),
-  },
-  {
-    id: "task-2",
+  }),
+  new Task("task-2", {
     title: "Koppla Firebase",
     description: "Koppla appen till Firebase",
     category: "backend",
@@ -52,9 +51,8 @@ const testTasks: Task[] = [
     deadline: "2026-10-08",
     createdAt: Date.now(),
     memberId: "member-2",
-  },
-  {
-    id: "task-3",
+  }),
+  new Task("task-3", {
     title: "Designa knappar",
     description: "Skapa design för knappar",
     category: "ux",
@@ -64,19 +62,15 @@ const testTasks: Task[] = [
     createdAt: Date.now(),
     memberId: "member-3",
     completedAt: Date.now(),
-  },
+  }),
 ];
-
-console.log(testProject);
-console.log(testMembers);
-console.log(testTasks);
 
 const newTasks = testTasks.filter((task) => task.taskStatus === "new");
 const inProgressTasks = testTasks.filter(
   (task) => task.taskStatus === "in-progress",
 );
+
 const doneTasks = testTasks.filter((task) => task.taskStatus === "done");
-const frontendTasks = testTasks.filter((task) => task.category === "frontend");
 
 function filterByCategory(tasks: Task[], category: string): Task[] {
   return tasks.filter((task) => task.category === category);
@@ -94,20 +88,43 @@ function sortByLatestDeadline(tasks: Task[]): Task[] {
     (a, b) => new Date(b.deadline).getTime() - new Date(a.deadline).getTime(),
   );
 }
-const sortedByLatestDeadline = sortByLatestDeadline(testTasks);
-const sortedByDeadline = sortByEarliestDeadline(testTasks);
-const erikTasks = filterByMember(testTasks, "member-2");
-const backendTasks = filterByCategory(testTasks, "backend");
-console.log(sortedByLatestDeadline);
-console.log(sortedByDeadline);
-console.log(erikTasks);
-console.log(backendTasks);
-console.log(frontendTasks);
-console.log(doneTasks);
 
-console.log(inProgressTasks);
+const projectName = document.getElementById("projectName");
+const projectDescription = document.getElementById("projectDescription");
+const projectDeadline = document.getElementById("projectDeadline");
 
-console.log(newTasks);
+if (projectName) {
+  projectName.textContent = testProject.name;
+}
 
-const taskCard = TaskCard(testTasks[0]);
-console.log(taskCard);
+if (projectDescription) {
+  projectDescription.textContent = testProject.description;
+}
+
+if (projectDeadline) {
+  projectDeadline.textContent = `Deadline: ${testProject.deadline}`;
+}
+
+const newTasksContainer = document.getElementById("newTasks");
+
+if (newTasksContainer) {
+  newTasksContainer.innerHTML = newTasks
+    .map((task) => TaskCard(task))
+    .join(" ");
+}
+
+const inProgressTasksContainer = document.getElementById("inProgressTasks");
+
+if (inProgressTasksContainer) {
+  inProgressTasksContainer.innerHTML = inProgressTasks
+    .map((task) => TaskCard(task))
+    .join(" ");
+}
+
+const doneTasksContainer = document.getElementById("doneTasks");
+
+if (doneTasksContainer) {
+  doneTasksContainer.innerHTML = doneTasks
+    .map((task) => TaskCard(task))
+    .join(" ");
+}
