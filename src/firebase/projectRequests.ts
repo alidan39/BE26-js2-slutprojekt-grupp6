@@ -49,3 +49,32 @@ export async function postProject(newProject: FirebaseProject): Promise<string> 
     const data: { name: string } = await response.json();
     return data.name;
 }
+
+// Lägger till en uppgifts id i projektets taskIds
+export async function addTaskToProject(projectId: string, taskId: string): Promise<void> {
+    // Hämta projektets nuvarande taskIds
+    const getResponse = await fetch(`${BASE_URL}/projects/${projectId}/taskIds.json`);
+
+    if (!getResponse.ok) {
+        throw new Error('Kunde inte hämta projektets uppgifter');
+    }
+
+    // null om projektet inte har några uppgifter än
+    const taskIds: string[] | null = await getResponse.json();
+    const updatedTaskIds = [...(taskIds ?? []), taskId];
+
+    // PUT ersätter hela arrayen, POST hade skapat ett Firebase-id och förstört arrayen
+    const options = {
+        method: 'PUT',
+        body: JSON.stringify(updatedTaskIds),
+        headers: {
+            'Content-type': 'application/json'
+        }
+    };
+
+    const putResponse = await fetch(`${BASE_URL}/projects/${projectId}/taskIds.json`, options);
+
+    if (!putResponse.ok) {
+        throw new Error('Kunde inte lägga till uppgiften i projektet');
+    }
+}
