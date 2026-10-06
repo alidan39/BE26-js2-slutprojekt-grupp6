@@ -1,5 +1,6 @@
 import { BASE_URL } from './config';
-import type { Task, FirebaseTasks } from '../types/types';
+import { addTaskToProject } from './projectRequests';
+import type { Task, FirebaseTask, FirebaseTasks } from '../types/types';
 
 // Hämtar alla uppgifter och gör om dem till en array med id inkluderat
 export async function getTasks(): Promise<Task[]> {
@@ -30,4 +31,28 @@ export async function getTasks(): Promise<Task[]> {
     }
 
     return tasks;
+}
+
+// Skapar en ny uppgift och kopplar den till projektet. Returnerar det nya id:t
+export async function postTask(newTask: FirebaseTask, projectId: string): Promise<string> {
+    const options = {
+        method: 'POST',
+        body: JSON.stringify(newTask),
+        headers: {
+            'Content-type': 'application/json'
+        }
+    };
+
+    const response = await fetch(`${BASE_URL}/tasks.json`, options);
+
+    if (!response.ok) {
+        throw new Error('Kunde inte skapa uppgift');
+    }
+
+    const data: { name: string } = await response.json();
+    const newTaskId = data.name;
+
+    await addTaskToProject(projectId, newTaskId);
+
+    return newTaskId;
 }
