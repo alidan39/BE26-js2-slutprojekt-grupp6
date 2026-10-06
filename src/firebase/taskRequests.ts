@@ -8,7 +8,7 @@ export async function getTasks(): Promise<Task[]> {
     const response = await fetch(`${BASE_URL}/tasks.json`);
 
     if (!response.ok) {
-        throw new Error('Kunde inte hämta uppgifter');
+        throw new Error('Failed to fetch tasks');
     }
 
     const data: FirebaseTasks | null = await response.json();
@@ -35,7 +35,7 @@ export async function postTask(newTask: FirebaseTask, projectId: string): Promis
     const response = await fetch(`${BASE_URL}/tasks.json`, options);
 
     if (!response.ok) {
-        throw new Error('Kunde inte skapa uppgift');
+        throw new Error('Failed to create task');
     }
 
     const data: { name: string } = await response.json();

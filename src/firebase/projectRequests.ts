@@ -6,7 +6,7 @@ export async function getProjects(): Promise<Project[]> {
     const response = await fetch(`${BASE_URL}/projects.json`);
 
     if (!response.ok) {
-        throw new Error('Kunde inte hämta projekt');
+        throw new Error('Failed to fetch projects');
     }
 
     const data: FirebaseProjects | null = await response.json();
@@ -42,7 +42,7 @@ export async function postProject(newProject: FirebaseProject): Promise<string> 
     const response = await fetch(`${BASE_URL}/projects.json`, options);
 
     if (!response.ok) {
-        throw new Error('Kunde inte skapa projekt');
+        throw new Error('Failed to create project');
     }
 
     // Firebase svarar med { name: "<nytt id>" }
@@ -56,7 +56,7 @@ export async function addTaskToProject(projectId: string, taskId: string): Promi
     const getResponse = await fetch(`${BASE_URL}/projects/${projectId}/taskIds.json`);
 
     if (!getResponse.ok) {
-        throw new Error('Kunde inte hämta projektets uppgifter');
+        throw new Error('Failed to fetch project tasks');
     }
 
     // null om projektet inte har några uppgifter än
@@ -75,6 +75,6 @@ export async function addTaskToProject(projectId: string, taskId: string): Promi
     const putResponse = await fetch(`${BASE_URL}/projects/${projectId}/taskIds.json`, options);
 
     if (!putResponse.ok) {
-        throw new Error('Kunde inte lägga till uppgiften i projektet');
+        throw new Error('Failed to add task to project');
     }
 }

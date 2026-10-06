@@ -7,7 +7,7 @@ export async function getMembers(): Promise<Member[]> {
     const response = await fetch(`${BASE_URL}/members.json`);
 
     if (!response.ok) {
-        throw new Error('Kunde inte hämta medlemmar');
+        throw new Error('Failed to fetch members');
     }
 
     const data: FirebaseMembers | null = await response.json();
@@ -40,7 +40,7 @@ export async function postMember(newMember: FirebaseMember): Promise<string> {
     const response = await fetch(`${BASE_URL}/members.json`, options);
 
     if (!response.ok) {
-        throw new Error('Kunde inte skapa medlem');
+        throw new Error('Failed to create member');
     }
 
     // Firebase svarar med { name: "<nytt id>" }
