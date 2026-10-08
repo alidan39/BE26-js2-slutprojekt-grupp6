@@ -61,9 +61,9 @@ export async function addTaskToProject(projectId: string, taskId: string): Promi
 
     // null om projektet inte har några uppgifter än
     const taskIds: string[] | null = await getResponse.json();
-    const updatedTaskIds = [...(taskIds || []), taskId];
+    const updatedTaskIds = [...(taskIds || []), taskId]; //kopierar alla gamla id och lägger till nya sist
 
-    // PUT ersätter hela arrayen, POST hade skapat ett Firebase-id och förstört arrayen
+    // PUT ersätter hela arrayen, POST skapar ett Firebase-id som förstör arrayen
     const options = {
         method: 'PUT',
         body: JSON.stringify(updatedTaskIds),
