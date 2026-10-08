@@ -51,7 +51,15 @@ export interface FirebaseArchive {
     task: FirebaseTask;
 }
 
+// En arkiverad uppgift i appen: id:t + det som ligger i Firebase
+export interface ArchivedTask {
+    id: string;
+    projectId: string;
+    task: FirebaseTask;
+}
+
 export type FirebaseProjects = Record<string, FirebaseProject>;
 export type FirebaseMembers = Record<string, FirebaseMember>;
 export type FirebaseTasks = Record<string, FirebaseTask>;
+export type FirebaseArchives = Record<string, FirebaseArchive>;
 
