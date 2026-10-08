@@ -64,6 +64,28 @@ export class Task {
         this.priority = newPriority;
     }
 
+    // Markerar uppgiften som klar och sparar när den blev klar
+    async complete(): Promise<void> {
+        const completedAt = Date.now();
+
+        const options = {
+            method: 'PATCH',
+            body: JSON.stringify({ taskStatus: 'done', completedAt: completedAt }),
+            headers: {
+                'Content-type': 'application/json'
+            }
+        };
+
+        const response = await fetch(`${BASE_URL}/tasks/${this.id}.json`, options);
+
+        if (!response.ok) {
+            throw new Error('Failed to complete task');
+        }
+
+        this.taskStatus = 'done';
+        this.completedAt = completedAt;
+    }
+
      async archive(projectId: string): Promise<void> {
         const archivedTask: FirebaseArchive = {
             projectId: projectId,
