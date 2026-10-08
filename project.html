@@ -1,12 +1,13 @@
 <!doctype html>
-<html lang="sv">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Projekt</title>
+    <title>Project</title>
 
     <link rel="stylesheet" href="/src/style.css" />
+
     <link
       href="https://fonts.googleapis.com/css2?family=Dongle&family=Text+Me+One&display=swap"
       rel="stylesheet"
@@ -15,36 +16,151 @@
 
   <body>
     <header>
-      <h1 id="projectName">Projekt</h1>
+      <h1 id="projectName">Project</h1>
 
       <div>
-        <a href="index.html" class="allBtn">Home</a>
-        <a href="allProjects.html" class="allBtn">Alla projekt</a>
+        <a href="index.html" class="allBtn"> Home </a>
+
+        <a href="allProjects.html" class="allBtn"> All projects </a>
       </div>
     </header>
 
     <main>
       <section>
         <h2 id="projectDescription"></h2>
+
         <p id="projectDeadline"></p>
       </section>
 
       <section>
-        <h2>Uppgifter</h2>
+        <h2>Members</h2>
 
-        <div>
-          <h3>Nya</h3>
-          <div id="newTasks"></div>
+        <div id="projectMembers"></div>
+      </section>
+
+      <section>
+        <h2>New task</h2>
+
+        <form id="taskForm">
+          <label>
+            Title
+
+            <input type="text" id="taskTitle" required />
+          </label>
+
+          <label>
+            Description
+
+            <textarea id="taskDescription" required></textarea>
+          </label>
+
+          <label>
+            Category
+
+            <select id="taskCategory" required>
+              <option value="">Choose category</option>
+
+              <option value="frontend">Frontend</option>
+
+              <option value="backend">Backend</option>
+
+              <option value="ux">UX</option>
+            </select>
+          </label>
+
+          <label>
+            Member
+
+            <select id="taskMember">
+              <option value="">Choose member</option>
+            </select>
+          </label>
+
+          <label>
+            Priority
+
+            <select id="taskPriority" required>
+              <option value="">Choose priority</option>
+
+              <option value="1">Low</option>
+
+              <option value="2">Medium</option>
+
+              <option value="3">High</option>
+            </select>
+          </label>
+
+          <label>
+            Deadline
+
+            <input type="date" id="taskDeadline" required />
+          </label>
+
+          <button type="submit">Create task</button>
+        </form>
+      </section>
+
+      <section>
+        <h2>Tasks</h2>
+
+        <div class="task-filters">
+          <label>
+            Filter by category
+
+            <select id="categoryFilter">
+              <option value="">All categories</option>
+
+              <option value="frontend">Frontend</option>
+
+              <option value="backend">Backend</option>
+
+              <option value="ux">UX</option>
+            </select>
+          </label>
+
+          <label>
+            Filter by member
+
+            <select id="memberFilter">
+              <option value="">All members</option>
+            </select>
+          </label>
+
+          <label>
+            Sort by
+
+            <select id="sortTasks">
+              <option value="">Default</option>
+
+              <option value="earliest">Deadline: earliest first</option>
+
+              <option value="latest">Deadline: latest first</option>
+
+              <option value="title-az">Title: A-Z</option>
+
+              <option value="title-za">Title: Z-A</option>
+            </select>
+          </label>
         </div>
 
-        <div>
-          <h3>Pågående</h3>
-          <div id="inProgressTasks"></div>
-        </div>
+        <div class="task-columns">
+          <div class="task-column">
+            <h3>New</h3>
 
-        <div>
-          <h3>Slutförda</h3>
-          <div id="doneTasks"></div>
+            <div id="newTasks"></div>
+          </div>
+
+          <div class="task-column">
+            <h3>In progress</h3>
+
+            <div id="inProgressTasks"></div>
+          </div>
+
+          <div class="task-column">
+            <h3>Completed</h3>
+
+            <div id="doneTasks"></div>
+          </div>
         </div>
       </section>
     </main>
