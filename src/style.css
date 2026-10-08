@@ -243,3 +243,20 @@ box-shadow: 1px 1px 15px #6b38c9;
 transform: translateY(-3px);
 box-shadow: 0 0 15px #60A5FA;
 }
+
+/*----------allmembers.html----------*/
+
+#allMembersWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 20px 60px;
+}
+
+.memberCard, .projectCard {
+  background-color: #5a4e9b;
+  border: 1px solid #2a2158;
+  box-shadow: 0 0 3px #1a1341;
+  border-radius: 5px;
+  margin: 10px 20px;
+  padding: 15px;
+}

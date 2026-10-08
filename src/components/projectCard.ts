@@ -1,7 +1,8 @@
-import { Project } from "../types/types"
+import type { Project } from "../types/types"
 
 export function createProjectCard(project: Project){
     const projectCard = document.createElement('article')
+    projectCard.classList.add('projectCard')
 
     projectCard.innerHTML = `
       <a class="projectLinkDiv" href="project.html?id=${project.id}">
