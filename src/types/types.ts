@@ -9,6 +9,7 @@ export interface Project {
     deadline: string;
     memberIds: string[];
     taskIds: string[];
+    archived: boolean;
 }
 
 export interface Member {
@@ -25,6 +26,7 @@ export interface FirebaseProject {
     deadline: string;
     memberIds?: string[];
     taskIds?: string[];
+    archived?: boolean;
 }
 
 export interface FirebaseMember {

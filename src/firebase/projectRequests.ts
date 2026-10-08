@@ -22,7 +22,9 @@ export async function getProjects(): Promise<Project[]> {
             deadline: data[id].deadline,
             // Tomma arrayer sparas inte i Firebase, så de kan saknas
             memberIds: data[id].memberIds || [],
-            taskIds: data[id].taskIds || []
+            taskIds: data[id].taskIds || [],
+            // Saknas på projekt som aldrig arkiverats
+            archived: data[id].archived || false
         });
     }
 
@@ -105,5 +107,23 @@ export async function removeTaskFromProject(projectId: string, taskId: string): 
 
     if (!putResponse.ok) {
         throw new Error('Failed to remove task from project');
+    }
+}
+
+// Markerar ett projekt som arkiverat. Projektet och dess uppgifter ligger kvar
+export async function archiveProject(projectId: string): Promise<void> {
+    // PATCH ändrar bara archived, PUT hade ersatt hela projektet
+    const options = {
+        method: 'PATCH',
+        body: JSON.stringify({ archived: true }),
+        headers: {
+            'Content-type': 'application/json'
+        }
+    };
+
+    const response = await fetch(`${BASE_URL}/projects/${projectId}.json`, options);
+
+    if (!response.ok) {
+        throw new Error('Failed to archive project');
     }
 }
