@@ -1,6 +1,8 @@
 import type { Category, TaskStatus, Priority, FirebaseTask, FirebaseArchive } from '../types/types.ts';
 import { BASE_URL } from '../firebase/config.ts';
 import { removeTaskFromProject } from '../firebase/projectRequests.ts';
+import { updateActiveTasks } from '../firebase/memberRequests.ts';
+
 // En instans = en uppgift. Id:t gör att den senare kan ändra och radera sig själv i Firebase
 export class Task {
     public readonly id: string;
@@ -27,8 +29,7 @@ export class Task {
         this.completedAt = data.completedAt;
     }
 
-
- async updateDeadline(newDeadline: string): Promise<void> {
+    async updateDeadline(newDeadline: string): Promise<void> {
         const options = {
             method: 'PATCH',
             body: JSON.stringify({ deadline: newDeadline }),
@@ -46,7 +47,7 @@ export class Task {
         this.deadline = newDeadline;
     }
 
- async updatePriority(newPriority: Priority): Promise<void> {
+    async updatePriority(newPriority: Priority): Promise<void> {
         const options = {
             method: 'PATCH',
             body: JSON.stringify({ priority: newPriority }),
@@ -64,8 +65,48 @@ export class Task {
         this.priority = newPriority;
     }
 
+    // Tilldelar uppgiften en medlem och flyttar den till in-progress
+    async assignMember(memberId: string): Promise<void> {
+        if (this.taskStatus === 'done') {
+            throw new Error('Cannot assign a completed task');
+        }
+
+        const previousMemberId = this.memberId;
+
+        const options = {
+            method: 'PATCH',
+            body: JSON.stringify({ memberId: memberId, taskStatus: 'in-progress' }),
+            headers: {
+                'Content-type': 'application/json'
+            }
+        };
+
+        const response = await fetch(`${BASE_URL}/tasks/${this.id}.json`, options);
+
+        if (!response.ok) {
+            throw new Error('Failed to assign member');
+        }
+
+        this.memberId = memberId;
+        this.taskStatus = 'in-progress';
+
+        // Samma medlem igen, då ändras inte antalet
+        if (previousMemberId === memberId) return;
+
+        // Byts medlem har den förra en aktiv uppgift mindre
+        if (previousMemberId) {
+            await updateActiveTasks(previousMemberId, -1);
+        }
+
+        await updateActiveTasks(memberId, 1);
+    }
+
     // Markerar uppgiften som klar och sparar när den blev klar
     async complete(): Promise<void> {
+        if (this.taskStatus === 'done') {
+            throw new Error('Task is already completed');
+        }
+
         const completedAt = Date.now();
 
         const options = {
@@ -84,9 +125,14 @@ export class Task {
 
         this.taskStatus = 'done';
         this.completedAt = completedAt;
+
+        // Uppgiften räknas inte längre som aktiv för medlemmen
+        if (this.memberId) {
+            await updateActiveTasks(this.memberId, -1);
+        }
     }
 
-     async archive(projectId: string): Promise<void> {
+    async archive(projectId: string): Promise<void> {
         const archivedTask: FirebaseArchive = {
             projectId: projectId,
             task: {
