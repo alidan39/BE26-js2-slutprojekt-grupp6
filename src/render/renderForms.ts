@@ -10,7 +10,7 @@ const memberForm = document.querySelector('#newMemberForm')
 const pName = document.querySelector('#pName') as HTMLInputElement
 const desDiv = document.querySelector('#desDiv') as HTMLTextAreaElement
 const deadline = document.querySelector('#deadline') as HTMLInputElement
-const addMemberWrapper = document.querySelector('#addMembersWrapper') as HTMLDivElement
+const addMemberWrapper = document.querySelector('#addMemberWrapper') as HTMLDivElement
 
 const mName = document.querySelector('#mName') as HTMLInputElement
 
@@ -37,7 +37,7 @@ projectForm?.addEventListener('submit', async (event) => {
     event.preventDefault()
 
     //Checkboxes för members
-    const checkedMembers = document.querySelectorAll('#addMembersWrapper input:checked')
+    const checkedMembers = document.querySelectorAll('#addMemberWrapper input:checked')
     const memberIds = Array.from(checkedMembers).map(checkbox => (checkbox as HTMLInputElement).value)
 
     const newProject = {
@@ -48,7 +48,7 @@ projectForm?.addEventListener('submit', async (event) => {
     }
 
     await postProject(newProject)
-    //await renderAllProjects()
+    await renderAllProjects()
 
     console.log(`
         --------------------------------------
@@ -98,7 +98,7 @@ memberForm?.addEventListener('submit', async (event) => {
           --------------------------------------
     `)
 
-    memberForm.innerHTML = ''
+    /*memberForm.reset()*/
 })
 
 //Rendera allmembers
