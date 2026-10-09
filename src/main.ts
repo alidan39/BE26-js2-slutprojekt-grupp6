@@ -1,4 +1,4 @@
-import "./pages/project";
+import "./pages/project"
 import {getMembers, postMember} from "./firebase/memberRequests.ts"
 import {getProjects, postProject} from "./firebase/projectRequests.ts"
 import { createMemberCard } from "./components/memberCard.ts"

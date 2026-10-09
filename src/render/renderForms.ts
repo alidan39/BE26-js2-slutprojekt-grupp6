@@ -1,5 +1,5 @@
 import {getMembers, postMember} from "../firebase/memberRequests.ts"
-import type { Project, Member, Category } from "../types/types.ts"
+import type {Category } from "../types/types.ts"
 import {getProjects, postProject} from "../firebase/projectRequests.ts"
 import { createMemberCard } from "../components/memberCard.ts"
 import { createProjectCard } from "../components/projectCard.ts"
@@ -10,7 +10,7 @@ const memberForm = document.querySelector('#newMemberForm')
 const pName = document.querySelector('#pName') as HTMLInputElement
 const desDiv = document.querySelector('#desDiv') as HTMLTextAreaElement
 const deadline = document.querySelector('#deadline') as HTMLInputElement
-const addMemberWrapper = document.querySelector('#addMemberWrapper') as HTMLDivElement
+const addMemberWrapper = document.querySelector('#addMembersWrapper') as HTMLDivElement
 
 const mName = document.querySelector('#mName') as HTMLInputElement
 
