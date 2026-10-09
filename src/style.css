@@ -1,3 +1,263 @@
+main {
+  width: 1100px;
+  margin: 0 auto;
+  padding: 35px 0 60px;
+}
+
+main > section:first-child {
+  width: 100%;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+#projectDescription {
+  display: inline-block;
+  max-width: 700px;
+  margin: 0 auto 10px;
+  padding: 12px 25px;
+  background: #1b2030;
+  border: 1px solid rgba(107, 56, 201, 0.6);
+  border-radius: 12px;
+  color: white;
+  font-size: 1.4rem;
+  font-weight: normal;
+  box-shadow: 0 0 10px rgba(107, 56, 201, 0.2);
+}
+
+#projectDeadline {
+  margin: 8px 0;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.1rem;
+}
+
+main > section > h2 {
+  margin-bottom: 20px;
+  color: white;
+  text-align: center;
+  font-size: 2rem;
+}
+
+main > section:nth-child(2) {
+  margin-bottom: 40px;
+}
+
+#projectMembers {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+#projectMembers p {
+  margin: 0;
+  padding: 16px;
+  background: #5c4ca5;
+  border-radius: 6px;
+  color: white;
+  font-family: "Text Me One", sans-serif;
+  font-size: 1rem;
+  box-shadow: 0 0 8px rgba(107, 56, 201, 0.25);
+  transition: 0.2s;
+}
+
+#projectMembers p:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 15px rgba(107, 56, 201, 0.55);
+}
+
+main > section:nth-child(3) {
+  width: 800px;
+  margin: 0 auto 45px;
+}
+
+#taskForm {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  padding: 25px;
+  background: #151c2d;
+  border: 1px solid rgba(107, 56, 201, 0.55);
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(107, 56, 201, 0.15);
+}
+
+#taskForm label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  color: white;
+  font-family: "Text Me One", sans-serif;
+  font-size: 1rem;
+}
+
+#taskForm input,
+#taskForm textarea,
+#taskForm select {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 9px 12px;
+  background: #0f1524;
+  border: 1px solid rgba(107, 56, 201, 0.65);
+  border-radius: 7px;
+  color: white;
+  font-family: "Text Me One", sans-serif;
+  font-size: 1rem;
+}
+
+#taskForm textarea {
+  height: 80px;
+  resize: none;
+}
+
+#taskForm input:focus,
+#taskForm textarea:focus,
+#taskForm select:focus {
+  outline: none;
+  border-color: #7c5cff;
+  box-shadow: 0 0 8px rgba(96, 165, 250, 0.45);
+}
+
+#taskForm button {
+  grid-column: 1 / -1;
+  justify-self: center;
+  padding: 8px 25px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
+  color: white;
+  font-family: "Dongle", sans-serif;
+  font-size: 1.5rem;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(96, 165, 250, 0.35);
+  transition: 0.2s;
+}
+
+#taskForm button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 16px rgba(96, 165, 250, 0.7);
+}
+
+.task-filters {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 15px;
+  width: 800px;
+  margin: 0 auto 25px;
+}
+
+.task-filters label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  color: white;
+  font-family: "Text Me One", sans-serif;
+}
+
+.task-filters select {
+  padding: 8px 10px;
+  background: #151c2d;
+  border: 1px solid rgba(107, 56, 201, 0.6);
+  border-radius: 7px;
+  color: white;
+  font-family: "Text Me One", sans-serif;
+}
+
+.task-columns {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  width: 100%;
+}
+
+.task-column {
+  min-height: 300px;
+  padding: 15px;
+  background: #111827;
+  border: 1px solid rgba(107, 56, 201, 0.5);
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(107, 56, 201, 0.12);
+}
+
+.task-column h3 {
+  margin: 0 0 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(168, 85, 247, 0.35);
+  color: white;
+  text-align: center;
+  font-family: "Dongle", sans-serif;
+  font-size: 1.8rem;
+}
+
+.task-column > div {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.task-card {
+  width: auto;
+  margin: 0;
+  padding: 15px;
+  background: #5c4ca5;
+  border: none;
+  border-radius: 6px;
+  box-shadow: 0 0 8px rgba(107, 56, 201, 0.25);
+  transition: 0.2s;
+}
+
+.task-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 15px rgba(107, 56, 201, 0.55);
+}
+
+.task-card h3 {
+  margin: 0 0 8px;
+  color: white;
+  font-family: "Dongle", sans-serif;
+  font-size: 1.7rem;
+}
+
+.task-card > p {
+  margin: 0 0 12px;
+  color: white;
+  font-family: "Text Me One", sans-serif;
+  font-size: 0.95rem;
+}
+
+.task-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.task-info p {
+  margin: 0;
+  color: white;
+  font-family: "Text Me One", sans-serif;
+  font-size: 0.9rem;
+}
+
+.task-info strong {
+  color: white;
+}
+
+.complete-task-btn,
+.archive-task-btn {
+  margin-top: 12px;
+  padding: 6px 13px;
+  border: none;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
+  color: white;
+  font-family: "Dongle", sans-serif;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.complete-task-btn:hover,
+.archive-task-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 10px rgba(96, 165, 250, 0.7);
 /*----------HEADER----------*/
 * {
 margin: 0;
