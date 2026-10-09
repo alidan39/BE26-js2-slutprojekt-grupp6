@@ -48,7 +48,7 @@ projectForm?.addEventListener('submit', async (event) => {
     }
 
     await postProject(newProject)
-    await renderAllProjects()
+    //await renderAllProjects()
 
     console.log(`
         --------------------------------------
@@ -57,6 +57,20 @@ projectForm?.addEventListener('submit', async (event) => {
        `)
     
 })
+
+export async function renderAllProjects() {
+    const allProjectsWrapper = document.querySelector('#allProjectsWrapper')
+
+    if (!allProjectsWrapper) return
+
+    const allProjects = await getProjects()
+
+    //Loopa igenom varje member card
+    allProjects.forEach(project => {
+        const pCard = createProjectCard(project)
+        allProjectsWrapper.appendChild(pCard)
+    })
+}
 
 memberForm?.addEventListener('submit', async (event) => {
     event.preventDefault()
@@ -103,16 +117,3 @@ export async function renderAllMembers() {
     })
 }
 
-export async function renderAllProjects() {
-    const allProjectsWrapper = document.querySelector('#allProjectsWrapper')
-
-    if (!allProjectsWrapper) return
-
-    const allProjects = await getProjects()
-
-    //Loopa igenom varje member card
-    allProjects.forEach(project => {
-        const pCard = createProjectCard(project)
-        allProjectsWrapper.appendChild(pCard)
-    })
-}

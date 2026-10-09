@@ -244,7 +244,43 @@ transform: translateY(-3px);
 box-shadow: 0 0 15px #60A5FA;
 }
 
-/*----------allmembers.html----------*/
+/*----------allProjects.html----------*/
+.projectLinkDiv {
+  text-decoration: none;
+  cursor: default;
+}
+
+#boldH3 {
+  color: #010101;
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  cursor: pointer;
+}
+
+#boldH3:hover {
+  color: #201f1f;
+  text-shadow: 1px 1px 5px #aca6a6;
+}
+
+.projectCard p {
+  margin: 5px 0;
+}
+
+#bold {
+  color: #010101;
+}
+
+.descriptionDiv {
+  padding: 5px;
+  border: 1px solid #010101;
+  border-radius: 3px;
+  text-decoration: none;
+  margin-bottom: 10px;
+   
+}
+
+/*----------allMembers.html----------*/
 
 #allMembersWrapper {
   display: flex;
@@ -259,4 +295,11 @@ box-shadow: 0 0 15px #60A5FA;
   border-radius: 5px;
   margin: 10px 20px;
   padding: 15px;
+}
+
+.memberCard h3 {
+  color: #010101;
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
 }

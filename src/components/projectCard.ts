@@ -6,10 +6,11 @@ export function createProjectCard(project: Project){
 
     projectCard.innerHTML = `
       <a class="projectLinkDiv" href="project.html?id=${project.id}">
-        <h3>${project.name}</h3>
-        <p>${project.memberIds.length}</p>
-        <p>${project.description}</p>
-        <p>${project.deadline}</p>
+        <h3 id="boldH3">${project.name}</h3>
+        <p><b id="bold">Amount of Members: </b>${project.memberIds.length}</p>
+        <p><b id="bold">Project Description:</b></p>
+        <p class="descriptionDiv">${project.description}</p>
+        <p><b id="bold">Deadline: </b>${project.deadline}</p>
       </a> 
     `
     return projectCard
