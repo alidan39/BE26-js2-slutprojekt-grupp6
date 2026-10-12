@@ -36,6 +36,11 @@ export async function renderMemberOptions() {
 projectForm?.addEventListener('submit', async (event) => {
     event.preventDefault()
 
+    if(!pName.value.trim()) {
+        alert('Please give the project a name to continue!')
+        return
+    }
+
     //Checkboxes för members
     const checkedMembers = document.querySelectorAll('#addMembersWrapper input:checked')
     const memberIds = Array.from(checkedMembers).map(checkbox => (checkbox as HTMLInputElement).value)
@@ -75,6 +80,11 @@ export async function renderAllProjects() {
 memberForm?.addEventListener('submit', async (event) => {
     event.preventDefault()
 
+    if(!mName.value.trim()) {
+        alert('Please give the member a name to continue!')
+        return
+    }
+        
     const selectedCategory = document.querySelector('input[name="category"]:checked') as HTMLInputElement
       if(!selectedCategory) {
         alert('Please choose a Catagory') 
