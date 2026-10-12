@@ -1,23 +1,24 @@
 /*----------HEADER----------*/
 * {
-margin: 0;
-padding: 0;
-box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-html, body {
-min-height: 100vh;
+html,
+body {
+  min-height: 100vh;
 }
 
 body {
-  background: #0B1120;
-/*  background: #111827;*/
+  background: #0b1120;
+  /*  background: #111827;*/
   display: flex;
   flex-direction: column;
 }
 
 header {
-/*  background-color: rgb(85, 53, 128);*/
+  /*  background-color: rgb(85, 53, 128);*/
   background: #182235;
   /*background: #1E293B;*/
   display: flex;
@@ -25,7 +26,7 @@ header {
   align-items: center;
   padding: 20px 0;
   box-shadow: 1px 1px 15px #6b38c9;
-/*  box-shadow: 0 0 .2rem #fff,
+  /*  box-shadow: 0 0 .2rem #fff,
             0 0 .2rem #80299b,
             0 0 2rem #bc13fe,
             0 0 0.8rem #8523ac,
@@ -36,7 +37,7 @@ header {
 h1 {
   margin-bottom: 20px;
   font-size: 3.6rem;
-  background:linear-gradient(90deg,#60A5FA,#A855F7);
+  background: linear-gradient(90deg, #60a5fa, #a855f7);
   -webkit-background-clip: text;
   color: transparent;
   font-family: "Text Me One", sans-serif;
@@ -54,7 +55,8 @@ h1 {
   cursor: pointer;
 }
 */
-#newProjectWrapper, #newMemberWrapper {
+#newProjectWrapper,
+#newMemberWrapper {
   display: none;
   position: fixed;
   inset: 0;
@@ -66,31 +68,31 @@ h1 {
 }
 
 .newDiv {
-/*  border: 1px solid #010101;
+  /*  border: 1px solid #010101;
   border-radius: 5px;
   padding: 15px;
   position: relative;*/
-  background: #1B2030;
-color: hsla(0, 0%, 100%, 0.774);
-border-radius: 20px;
-padding: 2rem;
-min-width: 500px;
-border: 1px solid rgba(255,255,255,.1);
-box-shadow:
-0 0 20px rgba(93, 95, 255, .4),
-0 0 40px rgba(133, 30, 255, .2);
+  background: #1b2030;
+  color: hsla(0, 0%, 100%, 0.774);
+  border-radius: 20px;
+  padding: 2rem;
+  min-width: 500px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow:
+    0 0 20px rgba(93, 95, 255, 0.4),
+    0 0 40px rgba(133, 30, 255, 0.2);
 }
 
 .closeBtn {
   font-size: 2rem;
-/*  position: absolute;*/
-/*  top: 10px;
+  /*  position: absolute;*/
+  /*  top: 10px;
   left: 10px;*/
   width: 30px;
   height: 30px;
   display: flex;
   justify-self: flex-end;
-/*  justify-content: center;
+  /*  justify-content: center;
   align-items: center;
   border-radius: 50%;*/
   cursor: pointer;
@@ -99,9 +101,9 @@ box-shadow:
 }
 
 .closeBtn:hover {
-  color: #FF4D6D;
-  transform:rotate(360deg);
-  text-shadow: 0 0 10px #FF4D6D;
+  color: #ff4d6d;
+  transform: rotate(360deg);
+  text-shadow: 0 0 10px #ff4d6d;
 }
 /*
 #newProjectForm, #newMemberForm {
@@ -113,22 +115,23 @@ box-shadow:
 h2 {
   text-align: center;
   margin-bottom: 15px;
-  background:linear-gradient(90deg,#60A5FA,#A855F7);
+  background: linear-gradient(90deg, #60a5fa, #a855f7);
   -webkit-background-clip: text;
   color: transparent;
 }
 
-form label, p {
+form label,
+p {
   font-weight: 600;
   font-size: 1.1rem;
   color: white;
-/*  background:linear-gradient(90deg,#60A5FA,#A855F7);
+  /*  background:linear-gradient(90deg,#60A5FA,#A855F7);
   -webkit-background-clip: text;
   color: transparent;*/
 }
 
 #addMemberWrapper {
-/*  border: 1px solid #f5ebeb;*/
+  /*  border: 1px solid #f5ebeb;*/
   box-shadow: 0 0 5px #ffffff;
   border-radius: 5px;
   padding: 10px;
@@ -136,10 +139,9 @@ form label, p {
 }
 
 .memberWrapper {
-  border: 1px solid #A855F7;
+  border: 1px solid #a855f7;
   border-radius: 3px;
   padding: 3px 5px;
-
 }
 
 #submitBtn {
@@ -170,20 +172,23 @@ main {
   grid-template-rows: 50px 350px;
 }
 
-.div1, .div2, .div3 {
-/*  border-bottom: 2px solid rgba(50, 71, 99, 0.4);*/
+.div1,
+.div2,
+.div3 {
+  /*  border-bottom: 2px solid rgba(50, 71, 99, 0.4);*/
   border-bottom: 1px solid #6b38c99d;
   padding: 1rem;
   font-weight: bold;
   text-align: center;
   font-size: 1.4rem;
-  background:linear-gradient(90deg,#60A5FA,#A855F7);
+  background: linear-gradient(90deg, #60a5fa, #a855f7);
   -webkit-background-clip: text;
   color: transparent;
 }
 
-.div2, .div5 {
-/*  border-left: 2px solid rgba(50, 71, 99, 0.4);
+.div2,
+.div5 {
+  /*  border-left: 2px solid rgba(50, 71, 99, 0.4);
   border-right: 2px solid rgba(50, 71, 99, 0.4);*/
   border-left: 1px solid #6b38c99d;
   border-right: 1px solid #6b38c99d;
@@ -198,40 +203,42 @@ main aside {
 
 .filterBtn {
   font-size: 1.2rem;
-  background:linear-gradient(90deg,#60A5FA,#A855F7);
+  background: linear-gradient(90deg, #60a5fa, #a855f7);
   -webkit-background-clip: text;
   color: transparent;
   border-radius: 10px;
-  padding: .5rem 1rem;
+  padding: 0.5rem 1rem;
   border: none;
-  box-shadow: 0 0 15px #60A5FA;
+  box-shadow: 0 0 15px #60a5fa;
   cursor: pointer;
 }
 
 /*----------FOOTER----------*/
 footer {
   background: #182235;
-/*  background-color: rgb(85, 53, 128);*/
+  /*  background-color: rgb(85, 53, 128);*/
   display: flex;
   justify-content: center;
   margin-top: auto;
   padding: 20px 0;
-/*  box-shadow: 1px 1px 15px #a738c9;*/
-box-shadow: 1px 1px 15px #6b38c9;
+  /*  box-shadow: 1px 1px 15px #a738c9;*/
+  box-shadow: 1px 1px 15px #6b38c9;
 }
 
 /*----------EXTERN HTML FILES---------*/
 
-
-  .newBtn, .submitBtn, .allFooterBtn, .allBtn {
+.newBtn,
+.submitBtn,
+.allFooterBtn,
+.allBtn {
   text-decoration: none;
   margin: 0 8px;
-  background:linear-gradient(135deg,#2563EB,#7C3AED);
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
   border: none;
   color: white;
   border-radius: 10px;
   padding: 1px 12px;
-  transition: .3s;
+  transition: 0.3s;
   cursor: pointer;
   font-family: "Dongle", sans-serif;
   font-weight: 400;
@@ -239,9 +246,12 @@ box-shadow: 1px 1px 15px #6b38c9;
   font-size: 1.6rem;
 }
 
-.newBtn:hover,.submitBtn:hover, .allFooterBtn:hover, .allBtn {
-transform: translateY(-3px);
-box-shadow: 0 0 15px #60A5FA;
+.newBtn:hover,
+.submitBtn:hover,
+.allFooterBtn:hover,
+.allBtn {
+  transform: translateY(-3px);
+  box-shadow: 0 0 15px #60a5fa;
 }
 
 /*----------allProjects.html----------*/
@@ -277,7 +287,6 @@ box-shadow: 0 0 15px #60A5FA;
   border-radius: 3px;
   text-decoration: none;
   margin-bottom: 10px;
-   
 }
 
 /*----------allMembers.html----------*/
@@ -288,7 +297,8 @@ box-shadow: 0 0 15px #60A5FA;
   margin: 20px 60px;
 }
 
-.memberCard, .projectCard {
+.memberCard,
+.projectCard {
   background-color: #5a4e9b;
   border: 1px solid #2a2158;
   box-shadow: 0 0 3px #1a1341;
@@ -306,258 +316,260 @@ box-shadow: 0 0 15px #60A5FA;
 
 /*-----ALICE-----*/
 
-main > section:first-child {
+/* Projektvy */
+.project-page {
+  padding: 2rem;
+}
+
+.project-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 1440px;
+  margin: auto;
+}
+
+.project-layout > section {
   width: 100%;
-  margin-bottom: 30px;
-  text-align: center;
+  margin: 0;
 }
 
-#projectDescription {
-  display: inline-block;
-  max-width: 700px;
-  margin: 0 auto 10px;
-  padding: 12px 25px;
+.project-layout h2 {
+  color: white;
+}
+
+.project-overview,
+.project-members-section,
+.create-task-section,
+.tasks-section {
+  padding: 1.5rem;
+  background: #151c2d;
+  border: 1px solid #343b58;
+  border-radius: 14px;
+}
+
+.project-overview {
   background: #1b2030;
-  border: 1px solid rgba(107, 56, 201, 0.6);
-  border-radius: 12px;
-  color: white;
-  font-size: 1.4rem;
-  font-weight: normal;
-  box-shadow: 0 0 10px rgba(107, 56, 201, 0.2);
 }
 
+#projectDescription,
 #projectDeadline {
-  margin: 8px 0;
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 1.1rem;
-}
-
-main > section > h2 {
-  margin-bottom: 20px;
   color: white;
-  text-align: center;
-  font-size: 2rem;
 }
 
-main > section:nth-child(2) {
-  margin-bottom: 40px;
-}
-
+/* Projektmedlemmar */
 #projectMembers {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 18px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
 }
 
 #projectMembers p {
   margin: 0;
-  padding: 16px;
-  background: #5c4ca5;
-  border-radius: 6px;
+  padding: 1rem;
+  background: #292644;
+  border: 1px solid #514680;
+  border-radius: 10px;
   color: white;
-  font-family: "Text Me One", sans-serif;
-  font-size: 1rem;
-  box-shadow: 0 0 8px rgba(107, 56, 201, 0.25);
-  transition: 0.2s;
+  line-height: 1.6;
 }
 
-#projectMembers p:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 0 15px rgba(107, 56, 201, 0.55);
+/* Skapa uppgift */
+.create-task-section {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 850px;
+  margin: 0 auto;
 }
 
-main > section:nth-child(3) {
-  width: 800px;
-  margin: 0 auto 45px;
+.create-task-section h2 {
+  margin-top: 0;
+  text-align: center;
 }
 
 #taskForm {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  padding: 25px;
-  background: #151c2d;
-  border: 1px solid rgba(107, 56, 201, 0.55);
-  border-radius: 12px;
-  box-shadow: 0 0 15px rgba(107, 56, 201, 0.15);
+  grid-template-columns: 150px minmax(0, 1fr);
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  margin: 0;
 }
 
-#taskForm label {
+#taskForm label,
+.task-filters label {
   display: flex;
   flex-direction: column;
   gap: 6px;
+  margin: 0;
   color: white;
-  font-family: "Text Me One", sans-serif;
-  font-size: 1rem;
 }
 
 #taskForm input,
 #taskForm textarea,
-#taskForm select {
+#taskForm select,
+.task-filters select,
+.assign-member-select {
   box-sizing: border-box;
   width: 100%;
-  padding: 9px 12px;
+  padding: 10px;
   background: #0f1524;
-  border: 1px solid rgba(107, 56, 201, 0.65);
+  border: 1px solid #514680;
   border-radius: 7px;
   color: white;
-  font-family: "Text Me One", sans-serif;
-  font-size: 1rem;
-}
-
-#taskForm textarea {
-  height: 80px;
-  resize: none;
 }
 
 #taskForm input:focus,
 #taskForm textarea:focus,
 #taskForm select:focus {
-  outline: none;
-  border-color: #7c5cff;
-  box-shadow: 0 0 8px rgba(96, 165, 250, 0.45);
+  outline: 1px solid #a78bfa;
+}
+
+#taskForm textarea {
+  min-height: 90px;
+  resize: vertical;
 }
 
 #taskForm button {
   grid-column: 1 / -1;
-  justify-self: center;
-  padding: 8px 25px;
+  justify-self: start;
+  padding: 8px 16px;
+  background: #5c4ca5;
   border: none;
-  border-radius: 8px;
-  background: linear-gradient(135deg, #2563eb, #7c3aed);
-  color: white;
-  font-family: "Dongle", sans-serif;
-  font-size: 1.5rem;
-  cursor: pointer;
-  box-shadow: 0 0 10px rgba(96, 165, 250, 0.35);
-  transition: 0.2s;
-}
-
-#taskForm button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 0 16px rgba(96, 165, 250, 0.7);
-}
-
-.task-filters {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 15px;
-  width: 800px;
-  margin: 0 auto 25px;
-}
-
-.task-filters label {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  color: white;
-  font-family: "Text Me One", sans-serif;
-}
-
-.task-filters select {
-  padding: 8px 10px;
-  background: #151c2d;
-  border: 1px solid rgba(107, 56, 201, 0.6);
   border-radius: 7px;
   color: white;
-  font-family: "Text Me One", sans-serif;
+  cursor: pointer;
 }
 
+#taskForm button:hover,
+.complete-task-btn:hover,
+.archive-task-btn:hover {
+  background: #7563c5;
+}
+
+/* Filter och uppgiftskolumner */
+.task-filters,
 .task-columns {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  width: 100%;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .task-column {
-  min-height: 300px;
-  padding: 15px;
-  background: #111827;
-  border: 1px solid rgba(107, 56, 201, 0.5);
+  min-width: 0;
+  padding: 1rem;
+  background: #1b2030;
+  border: 1px solid #343b58;
   border-radius: 12px;
-  box-shadow: 0 0 12px rgba(107, 56, 201, 0.12);
 }
 
 .task-column h3 {
-  margin: 0 0 15px;
   padding-bottom: 10px;
-  border-bottom: 1px solid rgba(168, 85, 247, 0.35);
+  border-bottom: 1px solid #514680;
   color: white;
   text-align: center;
-  font-family: "Dongle", sans-serif;
-  font-size: 1.8rem;
 }
 
 .task-column > div {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 1rem;
 }
 
+/* Uppgiftskort */
 .task-card {
-  width: auto;
-  margin: 0;
-  padding: 15px;
-  background: #5c4ca5;
-  border: none;
-  border-radius: 6px;
-  box-shadow: 0 0 8px rgba(107, 56, 201, 0.25);
-  transition: 0.2s;
-}
-
-.task-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 0 15px rgba(107, 56, 201, 0.55);
+  min-width: 0;
+  padding: 1rem;
+  background: #292644;
+  border: 1px solid #514680;
+  border-radius: 10px;
+  color: white;
+  overflow-wrap: anywhere;
 }
 
 .task-card h3 {
-  margin: 0 0 8px;
+  margin-top: 0;
   color: white;
-  font-family: "Dongle", sans-serif;
-  font-size: 1.7rem;
+  font-size: 1.4rem;
 }
 
-.task-card > p {
-  margin: 0 0 12px;
-  color: white;
-  font-family: "Text Me One", sans-serif;
-  font-size: 0.95rem;
+/* Beskrivning */
+.task-description {
+  margin: 12px 0;
+  padding: 10px;
+  background: #1b2030;
+  border-radius: 8px;
 }
 
+.task-description strong {
+  display: block;
+  margin-bottom: 5px;
+  color: #c4b5fd;
+}
+
+.task-description p {
+  margin: 0;
+  color: white;
+  line-height: 1.5;
+}
+
+/* Information i korten */
 .task-info {
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  align-items: flex-start;
+  gap: 8px;
 }
 
 .task-info p {
   margin: 0;
-  color: white;
-  font-family: "Text Me One", sans-serif;
-  font-size: 0.9rem;
+  color: #e0deed;
+  font-size: 0.95rem;
 }
 
 .task-info strong {
   color: white;
 }
 
+/* Knappar i uppgiftskort */
 .complete-task-btn,
 .archive-task-btn {
-  margin-top: 12px;
-  padding: 6px 13px;
+  margin-top: 8px;
+  padding: 8px 12px;
+  background: #5c4ca5;
   border: none;
-  border-radius: 6px;
-  background: linear-gradient(135deg, #2563eb, #7c3aed);
+  border-radius: 7px;
   color: white;
-  font-family: "Dongle", sans-serif;
-  font-size: 1.2rem;
   cursor: pointer;
-  transition: 0.2s;
 }
 
-.complete-task-btn:hover,.archive-task-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 0 10px rgba(96, 165, 250, 0.7);
+/* Mobilanpassning */
+@media (max-width: 900px) {
+  .task-columns,
+  .task-filters {
+    grid-template-columns: 1fr;
+  }
 }
-/*----------HEADER----------*/
+
+@media (max-width: 600px) {
+  .project-page {
+    padding: 1rem;
+  }
+
+  .project-overview,
+  .project-members-section,
+  .create-task-section,
+  .tasks-section {
+    padding: 1rem;
+  }
+
+  #taskForm {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  #taskForm button {
+    width: 100%;
+  }
+}
