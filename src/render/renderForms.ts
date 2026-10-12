@@ -46,6 +46,7 @@ projectForm?.addEventListener('submit', async (event) => {
         deadline: deadline.value,
         memberIds: memberIds
     }
+ls
 
     await postProject(newProject)
     await renderAllProjects()
