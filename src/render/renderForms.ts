@@ -1,5 +1,5 @@
 import {getMembers, postMember} from "../firebase/memberRequests.ts"
-import type {Category } from "../types/types.ts"
+import type { Project, Member, Category } from "../types/types.ts"
 import {getProjects, postProject} from "../firebase/projectRequests.ts"
 import { createMemberCard } from "../components/memberCard.ts"
 import { createProjectCard } from "../components/projectCard.ts"
@@ -36,8 +36,13 @@ export async function renderMemberOptions() {
 projectForm?.addEventListener('submit', async (event) => {
     event.preventDefault()
 
+    if(!pName.value.trim()) {
+        alert('Please give the project a name to continue!')
+        return
+    }
+
     //Checkboxes för members
-    const checkedMembers = document.querySelectorAll('#addMemberWrapper input:checked')
+    const checkedMembers = document.querySelectorAll('#addMembersWrapper input:checked')
     const memberIds = Array.from(checkedMembers).map(checkbox => (checkbox as HTMLInputElement).value)
 
     const newProject = {
@@ -46,10 +51,9 @@ projectForm?.addEventListener('submit', async (event) => {
         deadline: deadline.value,
         memberIds: memberIds
     }
-ls
 
     await postProject(newProject)
-    await renderAllProjects()
+    //await renderAllProjects()
 
     console.log(`
         --------------------------------------
@@ -76,6 +80,11 @@ export async function renderAllProjects() {
 memberForm?.addEventListener('submit', async (event) => {
     event.preventDefault()
 
+    if(!mName.value.trim()) {
+        alert('Please give the member a name to continue!')
+        return
+    }
+        
     const selectedCategory = document.querySelector('input[name="category"]:checked') as HTMLInputElement
       if(!selectedCategory) {
         alert('Please choose a Catagory') 
@@ -99,7 +108,7 @@ memberForm?.addEventListener('submit', async (event) => {
           --------------------------------------
     `)
 
-    /*memberForm.reset()*/
+    memberForm.innerHTML = ''
 })
 
 //Rendera allmembers
