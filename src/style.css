@@ -247,8 +247,22 @@ footer {
 box-shadow: 1px 1px 15px #6b38c9;
 }
 
-/*----------EXTERN HTML FILES---------*/
+/*---------ERROR Hantering----------*/
+.error {
+  color: #ff6b6b;
+  margin-top: 10px;
+  font-weight: bold;
+}
 
+#memberError, #projectError {
+  display: none;
+  color: #ff7b7b;
+  text-align: center;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+/*----------EXTERN HTML FILES---------*/
 
   .newBtn, .submitBtn, .allFooterBtn, .allBtn {
   text-decoration: none;

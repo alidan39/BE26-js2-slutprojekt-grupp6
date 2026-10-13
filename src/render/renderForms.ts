@@ -4,8 +4,8 @@ import {getProjects, postProject} from "../firebase/projectRequests.ts"
 import { createMemberCard } from "../components/memberCard.ts"
 import { createProjectCard } from "../components/projectCard.ts"
 
-const projectForm = document.querySelector('#newProjectForm')
-const memberForm = document.querySelector('#newMemberForm')
+const projectForm = document.querySelector('#newProjectForm') as HTMLFormElement
+const memberForm = document.querySelector('#newMemberForm') as HTMLFormElement
 
 const pName = document.querySelector('#pName') as HTMLInputElement
 const desDiv = document.querySelector('#desDiv') as HTMLTextAreaElement
@@ -13,6 +13,9 @@ const deadline = document.querySelector('#deadline') as HTMLInputElement
 const addMemberWrapper = document.querySelector('#addMemberWrapper') as HTMLDivElement
 
 const mName = document.querySelector('#mName') as HTMLInputElement
+
+const projectError = document.querySelector('#projectError') as HTMLParagraphElement
+const memberError = document.querySelector('#memberError') as HTMLParagraphElement
 
 
 // verifiuerad medlem som ska kunna väljas i options
@@ -52,29 +55,58 @@ projectForm?.addEventListener('submit', async (event) => {
         memberIds: memberIds
     }
 
-    await postProject(newProject)
-    //await renderAllProjects()
+    try {
 
-    console.log(`
+        projectError.style.display = 'none'
+        projectError.innerText = ''
+
+        await postProject(newProject)
+        //await renderAllProjects()
+        projectForm.reset()
+
+        console.log(`
         --------------------------------------
         ${newProject.name} has been added succesfully!
         --------------------------------------
-       `)
-    
+        `)
+    }
+
+    catch(error) {
+        projectError.style.display = 'block'
+        projectError.textContent = "Could not create a Project at the moment, please try again later!"
+        console.error(error)
+    }
+
 })
 
 export async function renderAllProjects() {
     const allProjectsWrapper = document.querySelector('#allProjectsWrapper')
 
-    if (!allProjectsWrapper) return
+    if (!allProjectsWrapper){
+        console.error('allProjectsWrapper could not be found')
+        return
+    }
 
-    const allProjects = await getProjects()
+    allProjectsWrapper.innerHTML = ''
 
-    //Loopa igenom varje member card
-    allProjects.forEach(project => {
-        const pCard = createProjectCard(project)
-        allProjectsWrapper.appendChild(pCard)
-    })
+    try {
+        const allProjects = await getProjects()
+
+        //Loopa igenom varje member card
+        allProjects.forEach(project => {
+          const pCard = createProjectCard(project)
+          allProjectsWrapper.appendChild(pCard)
+        })
+    }
+    catch(error) {
+        allProjectsWrapper.innerHTML = `
+        <p class="error">
+            Could not load Projects at the moment, please try again later!
+        </p>
+        `
+
+        console.error(error)
+    }
 }
 
 memberForm?.addEventListener('submit', async (event) => {
@@ -99,16 +131,29 @@ memberForm?.addEventListener('submit', async (event) => {
         activeTasks: 0
     }
 
-    await postMember(newMember)
-    await renderAllMembers()
-    console.log(`
+    try {
+
+        memberError.style.display = 'none'
+        memberError.innerText = ''
+
+        await postMember(newMember)
+        await renderAllMembers()
+        memberForm.reset()
+
+        console.log(`
           --------------------------------------
           New member added succesfully!
           ${newMember.name} welcome to the team!
           --------------------------------------
-    `)
+        `)
+    
+    }
+    catch(error) {
+        memberError.style.display = 'block'
+        memberError.textContent = "Could not create a Member at the moment, please try again later!"
+        console.error(error)
+    }
 
-    memberForm.innerHTML = ''
 })
 
 //Rendera allmembers
@@ -116,14 +161,29 @@ export async function renderAllMembers() {
 
     const allMembersWrapper = document.querySelector('#allMembersWrapper')
 
-    if (!allMembersWrapper) return
+    if (!allMembersWrapper) {
+        console.error('allMembersWrapper could not be found')
+        return
+    }
 
-    const allMembers = await getMembers()
+    allMembersWrapper.innerHTML = ''
 
-    //Loopa igenom varje member card
-    allMembers.forEach(member => {
-        const mCard = createMemberCard(member)
-        allMembersWrapper.appendChild(mCard)
-    })
+    try {
+        const allMembers = await getMembers()
+        //Loopa igenom varje member card
+        allMembers.forEach(member => {
+          const mCard = createMemberCard(member)
+          allMembersWrapper.appendChild(mCard)
+        })
+    }
+    catch(error) {
+        allMembersWrapper.innerHTML = `
+        <p class="error">
+            Could not load Members at the moment, please try again later!
+        </p>
+        `
+
+        console.error(error)
+    }
 }
 
