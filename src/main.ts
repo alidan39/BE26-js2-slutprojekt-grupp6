@@ -1,5 +1,6 @@
 import "./render/renderForms.ts"
 import { renderAllMembers, renderAllProjects, renderMemberOptions } from "./render/renderForms.ts"
+import {renderTaskGrid} from "./render/renderScrum.ts"
 
 const newProjectBtn = document.querySelector('#newProjectBtn') as HTMLButtonElement
 const newProjectWrapper = document.querySelector('#newProjectWrapper') as HTMLDivElement
@@ -28,3 +29,4 @@ closeMemberBtn?.addEventListener('click', () => {
 
 renderAllMembers()
 renderAllProjects()
+renderTaskGrid()

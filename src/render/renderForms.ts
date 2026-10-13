@@ -170,9 +170,13 @@ export async function renderAllMembers() {
 
     try {
         const allMembers = await getMembers()
-        //Loopa igenom varje member card
+        const allProjects = await getProjects()
+
+        //Loopa igenom varje member card + total projects for members
         allMembers.forEach(member => {
-          const mCard = createMemberCard(member)
+          const totalProjects = allProjects.filter(project =>project.memberIds.includes(member.id)).length
+          const mCard = createMemberCard(member, totalProjects)
+        
           allMembersWrapper.appendChild(mCard)
         })
     }
