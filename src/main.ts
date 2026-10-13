@@ -1,6 +1,3 @@
-import {getMembers, postMember} from "./firebase/memberRequests.ts"
-import {getProjects, postProject} from "./firebase/projectRequests.ts"
-import { createMemberCard } from "./components/memberCard.ts"
 import "./render/renderForms.ts"
 import { renderAllMembers, renderAllProjects, renderMemberOptions } from "./render/renderForms.ts"
 

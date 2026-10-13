@@ -34,17 +34,7 @@ h1 {
   font-weight: 500;
   font-style: normal;
 }
-/*
-.newBtn {
-  padding: 7px;
-  margin-top: 20px;
-  border-radius: 5px;
-  border: none;
-  margin: 10px;
-  font-size: 1rem;
-  cursor: pointer;
-}
-*/
+
 #newProjectWrapper, #newMemberWrapper {
   display: none;
   position: fixed;
@@ -57,33 +47,21 @@ h1 {
 }
 
 .newDiv {
-/*  border: 1px solid #010101;
-  border-radius: 5px;
-  padding: 15px;
-  position: relative;*/
   background: #1B2030;
-color: hsla(0, 0%, 100%, 0.774);
-border-radius: 20px;
-padding: 2rem;
-min-width: 500px;
-border: 1px solid rgba(255,255,255,.1);
-box-shadow:
-0 0 20px rgba(93, 95, 255, .4),
-0 0 40px rgba(133, 30, 255, .2);
+  color: hsla(0, 0%, 100%, 0.774);
+  border-radius: 20px;
+  padding: 2rem;
+  min-width: 500px;
+  border: 1px solid rgba(255,255,255,.1);
+  box-shadow: 0 0 20px rgba(93, 95, 255, .4),0 0 40px rgba(133, 30, 255, .2);
 }
 
 .closeBtn {
   font-size: 2rem;
-/*  position: absolute;*/
-/*  top: 10px;
-  left: 10px;*/
   width: 30px;
   height: 30px;
   display: flex;
   justify-self: flex-end;
-/*  justify-content: center;
-  align-items: center;
-  border-radius: 50%;*/
   cursor: pointer;
   font-weight: bold;
   transition: 0.9s;
@@ -94,13 +72,7 @@ box-shadow:
   transform:rotate(360deg);
   text-shadow: 0 0 10px #FF4D6D;
 }
-/*
-#newProjectForm, #newMemberForm {
-  display: flex;
-  flex-direction: column;
-  gap: 1px 5px;
-}
-*/
+
 h2 {
   text-align: center;
   margin-bottom: 15px;
@@ -113,9 +85,6 @@ form label, p {
   font-weight: 600;
   font-size: 1.1rem;
   color: white;
-/*  background:linear-gradient(90deg,#60A5FA,#A855F7);
-  -webkit-background-clip: text;
-  color: transparent;*/
 }
 
 input[type="text"],input[type="date"],textarea {
@@ -215,7 +184,6 @@ main {
 }
 
 .div1, .div2, .div3 {
-/*  border-bottom: 2px solid rgba(50, 71, 99, 0.4);*/
   border-bottom: 1px solid #6b38c99d;
   padding: 1rem;
   font-weight: bold;
@@ -227,8 +195,6 @@ main {
 }
 
 .div2, .div5 {
-/*  border-left: 2px solid rgba(50, 71, 99, 0.4);
-  border-right: 2px solid rgba(50, 71, 99, 0.4);*/
   border-left: 1px solid #6b38c99d;
   border-right: 1px solid #6b38c99d;
 }
@@ -238,13 +204,11 @@ main {
 /*----------FOOTER----------*/
 footer {
   background: #182235;
-/*  background-color: rgb(85, 53, 128);*/
   display: flex;
   justify-content: center;
   margin-top: auto;
   padding: 20px 0;
-/*  box-shadow: 1px 1px 15px #a738c9;*/
-box-shadow: 1px 1px 15px #6b38c9;
+  box-shadow: 1px 1px 15px #6b38c9;
 }
 
 /*---------ERROR Hantering----------*/

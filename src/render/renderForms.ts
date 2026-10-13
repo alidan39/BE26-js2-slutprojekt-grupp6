@@ -1,5 +1,5 @@
 import {getMembers, postMember} from "../firebase/memberRequests.ts"
-import type { Project, Member, Category } from "../types/types.ts"
+import type { Category } from "../types/types.ts"
 import {getProjects, postProject} from "../firebase/projectRequests.ts"
 import { createMemberCard } from "../components/memberCard.ts"
 import { createProjectCard } from "../components/projectCard.ts"
@@ -83,7 +83,7 @@ export async function renderAllProjects() {
     const allProjectsWrapper = document.querySelector('#allProjectsWrapper')
 
     if (!allProjectsWrapper){
-        console.error('allProjectsWrapper could not be found')
+        //console.error('allProjectsWrapper could not be found')
         return
     }
 
@@ -162,7 +162,7 @@ export async function renderAllMembers() {
     const allMembersWrapper = document.querySelector('#allMembersWrapper')
 
     if (!allMembersWrapper) {
-        console.error('allMembersWrapper could not be found')
+        //console.error('allMembersWrapper could not be found')
         return
     }
 
