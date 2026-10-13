@@ -1,8 +1,12 @@
 import {getMembers, postMember} from "../firebase/memberRequests.ts"
 import type { Category } from "../types/types.ts"
 import {getProjects, postProject} from "../firebase/projectRequests.ts"
+import { getTasks } from "../firebase/taskRequests.ts"
+import type { Task } from "../classes/Task.ts"
 import { createMemberCard } from "../components/memberCard.ts"
 import { createProjectCard } from "../components/projectCard.ts"
+import { getArchives } from "../firebase/archiveRequests.ts"
+import { createArchivedTaskCard } from "../components/archivedTaskCard.ts"
 
 const projectForm = document.querySelector('#newProjectForm') as HTMLFormElement
 const memberForm = document.querySelector('#newMemberForm') as HTMLFormElement
@@ -16,6 +20,10 @@ const mName = document.querySelector('#mName') as HTMLInputElement
 
 const projectError = document.querySelector('#projectError') as HTMLParagraphElement
 const memberError = document.querySelector('#memberError') as HTMLParagraphElement
+// Räknar hur många av projektets uppgifter som är pågående
+function countActiveTasks(project: Project, tasks: Task[]) {
+    return tasks.filter(task => project.taskIds.includes(task.id) && task.taskStatus === 'in-progress').length
+}
 
 
 // verifiuerad medlem som ska kunna väljas i options
@@ -30,6 +38,8 @@ export async function renderMemberOptions() {
         label.innerHTML = `
           <input type="checkbox" value="${member.id}">
           ${member.name}
+          <br>
+          <small><em>(${member.category})</em></small>
         `
         addMemberWrapper.appendChild(label)
     }
@@ -189,5 +199,44 @@ export async function renderAllMembers() {
 
         console.error(error)
     }
+}
+
+//Rendera arkiverade projekt
+export async function renderArchivedProjects() {
+    const archivedProjectsWrapper = document.querySelector('#archivedProjectsWrapper')
+
+    if (!archivedProjectsWrapper) return
+
+    const allProjects = await getProjects()
+    const allTasks = await getTasks()
+    const archivedProjects = allProjects.filter(project => project.archived)
+
+    archivedProjects.forEach(project => {
+        const pCard = createProjectCard(project, countActiveTasks(project, allTasks))
+        archivedProjectsWrapper.appendChild(pCard)
+    })
+}
+
+//Rendera arkiverade uppgifter
+export async function renderArchivedTasks() {
+    const archivedTasksWrapper = document.querySelector('#archivedTasksWrapper')
+
+    if (!archivedTasksWrapper) return
+
+    const archives = await getArchives()
+    const allProjects = await getProjects()
+    const allMembers = await getMembers()
+
+    archives.forEach(archive => {
+        // Arkivet har bara id:n, så vi letar upp namnen
+        const project = allProjects.find(project => project.id === archive.projectId)
+        const member = allMembers.find(member => member.id === archive.task.memberId)
+
+        const projectName = project ? project.name : 'Unknown project'
+        const memberName = member ? member.name : 'No member'
+
+        const aCard = createArchivedTaskCard(archive, projectName, memberName)
+        archivedTasksWrapper.appendChild(aCard)
+    })
 }
 

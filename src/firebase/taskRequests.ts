@@ -17,8 +17,9 @@ export async function getTasks(): Promise<Task[]> {
     if (!data) return tasks;
 
     for (const id in data) {
-       tasks.push(new Task(id, data[id]));
-}
+        tasks.push(new Task(id, data[id]));
+    }
+
     return tasks;
 }
 
