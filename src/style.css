@@ -1,12 +1,12 @@
 /*----------HEADER----------*/
 * {
-margin: 0;
-padding: 0;
-box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 html, body {
-min-height: 100vh;
+  min-height: 100vh;
 }
 
 body {
@@ -199,8 +199,6 @@ main {
   border-right: 1px solid #6b38c99d;
 }
 
-
-
 /*----------FOOTER----------*/
 footer {
   background: #182235;
@@ -282,7 +280,6 @@ box-shadow: 0 0 15px #60A5FA;
   border-radius: 3px;
   text-decoration: none;
   margin-bottom: 10px;
-   
 }
 
 /*----------allMembers.html----------*/
