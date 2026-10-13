@@ -26,8 +26,34 @@ export function TaskCard(task: Task, projectMembers: Member[]): string {
       <div class="task-info">
         <p><strong>Category:</strong> ${task.category}</p>
         <p><strong>Status:</strong> ${task.taskStatus}</p>
-        <p><strong>Priority:</strong> ${task.priority}</p>
-        <p><strong>Deadline:</strong> ${task.deadline}</p>
+        ${
+          task.taskStatus === "done"
+            ? `
+              <p><strong>Priority:</strong> ${task.priority}</p>
+              <p><strong>Deadline:</strong> ${task.deadline}</p>
+            `
+            : `
+              <label for="priority-${task.id}">Priority</label>
+              <select
+                id="priority-${task.id}"
+                class="priority-select"
+                data-task-id="${task.id}"
+              >
+                <option value="1" ${task.priority === 1 ? "selected" : ""}>Low</option>
+                <option value="2" ${task.priority === 2 ? "selected" : ""}>Medium</option>
+                <option value="3" ${task.priority === 3 ? "selected" : ""}>High</option>
+              </select>
+
+              <label for="deadline-${task.id}">Deadline</label>
+              <input
+                type="date"
+                id="deadline-${task.id}"
+                class="deadline-input"
+                data-task-id="${task.id}"
+                value="${task.deadline}"
+              />
+            `
+        }
         <p><strong>Assigned to:</strong> ${member ? member.name : "Unassigned"}</p>
         <p><strong>Created:</strong> ${createdDate}</p>
 

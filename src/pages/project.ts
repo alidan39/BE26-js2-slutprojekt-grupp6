@@ -1,8 +1,8 @@
 import type { FirebaseTask, Member } from "../types/types";
 import { Task } from "../classes/Task";
-import { getProjects } from "../firebase/projectRequests";
+import { getProjects, archiveProject } from "../firebase/projectRequests";
 import { getTasks, postTask } from "../firebase/taskRequests";
-import { getMembers } from "../firebase/memberRequests";
+import { getMembers, updateActiveTasks } from "../firebase/memberRequests";
 import { getTaskFormValues } from "../components/TaskForm";
 
 import { renderTasks } from "../components/taskRenderer";
@@ -41,6 +41,10 @@ const sortTasks = document.getElementById("sortTasks") as HTMLSelectElement;
 
 const taskForm = document.getElementById("taskForm") as HTMLFormElement;
 
+const archiveProjectBtn = document.getElementById(
+  "archiveProjectBtn",
+) as HTMLButtonElement;
+
 async function loadProject(): Promise<void> {
   try {
     const projects = await getProjects();
@@ -70,6 +74,12 @@ async function loadProject(): Promise<void> {
 
     if (projectDeadline) {
       projectDeadline.textContent = `Deadline: ${project.deadline}`;
+    }
+
+    // Ett arkiverat projekt kan inte arkiveras igen
+    if (project.archived) {
+      archiveProjectBtn.disabled = true;
+      archiveProjectBtn.textContent = "Archived";
     }
 
     memberFilter.innerHTML = `
@@ -144,6 +154,30 @@ sortTasks.addEventListener("change", () => {
   updateTaskView();
 });
 
+// Arkivera projekt.
+archiveProjectBtn.addEventListener("click", async () => {
+  if (!projectId) {
+    return;
+  }
+
+  if (!confirm("Are you sure you want to archive this project?")) {
+    return;
+  }
+
+  archiveProjectBtn.disabled = true;
+
+  try {
+    await archiveProject(projectId);
+
+    window.location.href = "archives.html";
+  } catch (error) {
+    console.error(error);
+
+    alert("Could not archive project. Please try again.");
+    archiveProjectBtn.disabled = false;
+  }
+});
+
 // CVälj medlem baserat på kategori.
 taskCategorySelect.addEventListener("change", () => {
   taskMemberSelect.innerHTML = `
@@ -190,6 +224,11 @@ if (taskForm) {
 
     try {
       await postTask(newTask, projectId);
+
+      // Uppgiften skapas direkt som in-progress, så medlemmen får en aktiv uppgift till
+      if (memberId) {
+        await updateActiveTasks(memberId, 1);
+      }
 
       taskForm.reset();
 

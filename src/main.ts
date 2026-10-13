@@ -1,8 +1,4 @@
-import {getMembers, postMember} from "./firebase/memberRequests.ts"
-import {getProjects, postProject} from "./firebase/projectRequests.ts"
-import { createMemberCard } from "./components/memberCard.ts"
-import "./render/renderForms.ts"
-import { renderAllMembers, renderAllProjects, renderMemberOptions } from "./render/renderForms.ts"
+import { renderAllMembers, renderAllProjects, renderMemberOptions, renderArchivedProjects, renderArchivedTasks } from "./render/renderForms.ts"
 
 const newProjectBtn = document.querySelector('#newProjectBtn') as HTMLButtonElement
 const newProjectWrapper = document.querySelector('#newProjectWrapper') as HTMLDivElement
@@ -31,3 +27,5 @@ closeMemberBtn?.addEventListener('click', () => {
 
 renderAllMembers()
 renderAllProjects()
+renderArchivedProjects()
+renderArchivedTasks()

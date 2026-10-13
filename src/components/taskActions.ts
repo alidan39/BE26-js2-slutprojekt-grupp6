@@ -1,4 +1,5 @@
 import { Task } from "../classes/Task";
+import type { Priority } from "../types/types";
 
 export function setupTaskActions(
   getProjectTasks: () => Task[],
@@ -33,6 +34,51 @@ export function setupTaskActions(
     } catch (error) {
       console.error(error);
       alert("Could not assign member. Please try again.");
+      target.disabled = false;
+    }
+  });
+
+  // Ändra deadline eller prioritet på en uppgift
+  document.addEventListener("change", async (event) => {
+    const target = event.target as HTMLInputElement | HTMLSelectElement;
+
+    const isDeadline = target.classList.contains("deadline-input");
+    const isPriority = target.classList.contains("priority-select");
+
+    if (!isDeadline && !isPriority) {
+      return;
+    }
+
+    const taskId = target.dataset.taskId;
+
+    if (!taskId || !target.value) {
+      return;
+    }
+
+    const task = getProjectTasks().find((task) => task.id === taskId);
+
+    if (!task) {
+      return;
+    }
+
+    target.disabled = true;
+
+    try {
+      if (isDeadline) {
+        await task.updateDeadline(target.value);
+      } else {
+        await task.updatePriority(Number(target.value) as Priority);
+      }
+
+      await reloadProject();
+    } catch (error) {
+      console.error(error);
+
+      alert(
+        isDeadline
+          ? "Could not update deadline. Please try again."
+          : "Could not update priority. Please try again.",
+      );
       target.disabled = false;
     }
   });
