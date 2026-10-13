@@ -16,6 +16,7 @@
     <button id="newProjectBtn" class="newBtn">+ New project</button>
       <aside id="newProjectWrapper">
         <div class="newDiv">
+          <p id="projectError">TEST</p>
           <span id="closeProjectBtn" class="closeBtn">&times;</span>
           <h2>Create new project</h2>
           <form id="newProjectForm">
@@ -41,6 +42,7 @@
     <button id="newMemberBtn" class="newBtn">+ New member</button>
       <aside id="newMemberWrapper">
         <div class="newDiv">
+          <p id="memberError"></p>
           <span id="closeMemberBtn" class="closeBtn">&times;</span>
           <h2>Add New Member</h2>
           <form id="newMemberForm">
@@ -69,18 +71,18 @@
 <main>
   <section class="gridSection">
     <div class="gridWrapper">
-      <div class="div1">To Do:</div>
-      <div class="div2">On Going:</div>
+      <div class="div1">New Tasks:</div>
+      <div class="div2">In Progress:</div>
       <div class="div3">Done:</div>
-      <div class="div4" id="todoDiv">4</div>
-      <div class="div5" id="ongoingDiv">5</div>
-      <div class="div6" id="doneDiv">6</div>
+      <div class="div4" id="newGrid"></div>
+      <div class="div5" id="inProgressGrid">5</div>
+      <div class="div6" id="doneGrid">6</div>
     </div>
   </section>
 </main>
 
 <footer>
-  <a href="allProjects.html" class="allFooterBtn">All Projects</a>
+  <a href="allprojects.html" class="allFooterBtn">All Projects</a>
   <a href="allMembers.html" class="allFooterBtn">All Members</a>
   <a href="archives.html" class="allFooterBtn">Archives</a>
 </footer>

@@ -1,5 +1,5 @@
 import {getMembers, postMember} from "../firebase/memberRequests.ts"
-import type { Project, Category } from "../types/types.ts"
+import type { Category } from "../types/types.ts"
 import {getProjects, postProject} from "../firebase/projectRequests.ts"
 import { getTasks } from "../firebase/taskRequests.ts"
 import type { Task } from "../classes/Task.ts"
@@ -18,6 +18,8 @@ const addMemberWrapper = document.querySelector('#addMemberWrapper') as HTMLDivE
 
 const mName = document.querySelector('#mName') as HTMLInputElement
 
+const projectError = document.querySelector('#projectError') as HTMLParagraphElement
+const memberError = document.querySelector('#memberError') as HTMLParagraphElement
 // Räknar hur många av projektets uppgifter som är pågående
 function countActiveTasks(project: Project, tasks: Task[]) {
     return tasks.filter(task => project.taskIds.includes(task.id) && task.taskStatus === 'in-progress').length
@@ -53,7 +55,7 @@ projectForm?.addEventListener('submit', async (event) => {
     }
 
     //Checkboxes för members
-    const checkedMembers = document.querySelectorAll('#addMemberWrapper input:checked')
+    const checkedMembers = document.querySelectorAll('#addMembersWrapper input:checked')
     const memberIds = Array.from(checkedMembers).map(checkbox => (checkbox as HTMLInputElement).value)
 
     const newProject = {
@@ -63,35 +65,58 @@ projectForm?.addEventListener('submit', async (event) => {
         memberIds: memberIds
     }
 
-    await postProject(newProject)
-    await renderAllProjects()
-    projectForm.reset()
+    try {
 
-    console.log(`
+        projectError.style.display = 'none'
+        projectError.innerText = ''
+
+        await postProject(newProject)
+        //await renderAllProjects()
+        projectForm.reset()
+
+        console.log(`
         --------------------------------------
         ${newProject.name} has been added succesfully!
         --------------------------------------
-       `)
-    
+        `)
+    }
+
+    catch(error) {
+        projectError.style.display = 'block'
+        projectError.textContent = "Could not create a Project at the moment, please try again later!"
+        console.error(error)
+    }
+
 })
 
 export async function renderAllProjects() {
     const allProjectsWrapper = document.querySelector('#allProjectsWrapper')
 
-    if (!allProjectsWrapper) return
+    if (!allProjectsWrapper){
+        //console.error('allProjectsWrapper could not be found')
+        return
+    }
 
-    const allProjects = await getProjects()
-    const allTasks = await getTasks()
-    const activeProjects = allProjects.filter(project => !project.archived)
-
-    // Töm först så att korten inte läggs till två gånger
     allProjectsWrapper.innerHTML = ''
 
-    //Loopa igenom varje member card
-    activeProjects.forEach(project => {
-        const pCard = createProjectCard(project, countActiveTasks(project, allTasks))
-        allProjectsWrapper.appendChild(pCard)
-    })
+    try {
+        const allProjects = await getProjects()
+
+        //Loopa igenom varje member card
+        allProjects.forEach(project => {
+          const pCard = createProjectCard(project)
+          allProjectsWrapper.appendChild(pCard)
+        })
+    }
+    catch(error) {
+        allProjectsWrapper.innerHTML = `
+        <p class="error">
+            Could not load Projects at the moment, please try again later!
+        </p>
+        `
+
+        console.error(error)
+    }
 }
 
 memberForm?.addEventListener('submit', async (event) => {
@@ -116,16 +141,29 @@ memberForm?.addEventListener('submit', async (event) => {
         activeTasks: 0
     }
 
-    await postMember(newMember)
-    await renderAllMembers()
-    console.log(`
+    try {
+
+        memberError.style.display = 'none'
+        memberError.innerText = ''
+
+        await postMember(newMember)
+        await renderAllMembers()
+        memberForm.reset()
+
+        console.log(`
           --------------------------------------
           New member added succesfully!
           ${newMember.name} welcome to the team!
           --------------------------------------
-    `)
+        `)
+    
+    }
+    catch(error) {
+        memberError.style.display = 'block'
+        memberError.textContent = "Could not create a Member at the moment, please try again later!"
+        console.error(error)
+    }
 
-    memberForm.reset()
 })
 
 //Rendera allmembers
@@ -133,25 +171,34 @@ export async function renderAllMembers() {
 
     const allMembersWrapper = document.querySelector('#allMembersWrapper')
 
-    if (!allMembersWrapper) return
+    if (!allMembersWrapper) {
+        //console.error('allMembersWrapper could not be found')
+        return
+    }
 
-    const allMembers = await getMembers()
-    const allProjects = await getProjects()
-    const activeProjects = allProjects.filter(project => !project.archived)
-
-    // Töm först så att korten inte läggs till två gånger
     allMembersWrapper.innerHTML = ''
 
-    //Loopa igenom varje member card
-    allMembers.forEach(member => {
-        // Projekten som medlemmen är med i
-        const projectNames = activeProjects
-            .filter(project => project.memberIds.includes(member.id))
-            .map(project => project.name)
+    try {
+        const allMembers = await getMembers()
+        const allProjects = await getProjects()
 
-        const mCard = createMemberCard(member, projectNames)
-        allMembersWrapper.appendChild(mCard)
-    })
+        //Loopa igenom varje member card + total projects for members
+        allMembers.forEach(member => {
+          const totalProjects = allProjects.filter(project =>project.memberIds.includes(member.id)).length
+          const mCard = createMemberCard(member, totalProjects)
+        
+          allMembersWrapper.appendChild(mCard)
+        })
+    }
+    catch(error) {
+        allMembersWrapper.innerHTML = `
+        <p class="error">
+            Could not load Members at the moment, please try again later!
+        </p>
+        `
+
+        console.error(error)
+    }
 }
 
 //Rendera arkiverade projekt
