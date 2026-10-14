@@ -2,7 +2,7 @@ import type { FirebaseTask, Member } from "../types/types";
 import { Task } from "../classes/Task";
 import { getProjects, archiveProject } from "../firebase/projectRequests";
 import { getTasks, postTask } from "../firebase/taskRequests";
-import { getMembers, updateActiveTasks } from "../firebase/memberRequests";
+import { getMembers } from "../firebase/memberRequests";
 import { getTaskFormValues } from "../components/TaskForm";
 
 import { renderTasks } from "../components/taskRenderer";
