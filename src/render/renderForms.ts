@@ -206,7 +206,6 @@ export async function renderAllMembers() {
     }
 }
 
-//Rendera arkiverade projekt
 export async function renderArchivedProjects() {
     const archivedProjectsWrapper = document.querySelector('#archivedProjectsWrapper')
 
@@ -222,7 +221,6 @@ export async function renderArchivedProjects() {
     })
 }
 
-//Rendera arkiverade uppgifter
 export async function renderArchivedTasks() {
     const archivedTasksWrapper = document.querySelector('#archivedTasksWrapper')
 

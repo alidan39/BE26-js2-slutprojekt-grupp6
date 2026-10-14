@@ -1,3 +1,5 @@
+// Firebase-anrop för medlemmar: hämta, skapa och uppdatera antal aktiva uppgifter
+
 import { BASE_URL } from './config.ts';
 import type { Member, FirebaseMember, FirebaseMembers } from '../types/types.ts';
 
@@ -49,7 +51,6 @@ export async function postMember(newMember: FirebaseMember): Promise<string> {
 
 // Ändrar medlemmens activeTasks med change (1 eller -1)
 export async function updateActiveTasks(memberId: string, change: number): Promise<void> {
-    // Hämta medlemmens nuvarande antal
     const getResponse = await fetch(`${BASE_URL}/members/${memberId}/activeTasks.json`);
 
     if (!getResponse.ok) {

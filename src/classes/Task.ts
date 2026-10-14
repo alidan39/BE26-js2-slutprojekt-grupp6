@@ -1,3 +1,5 @@
+// En uppgift som kan ändras, tilldelas, slutföras och arkiveras direkt i Firebase via sitt id
+
 import type {
   Category,
   TaskStatus,
@@ -8,7 +10,7 @@ import type {
 import { BASE_URL } from "../firebase/config.ts";
 import { removeTaskFromProject } from "../firebase/projectRequests.ts";
 import { updateActiveTasks } from "../firebase/memberRequests.ts";
-// En instans = en uppgift. Id:t gör att den senare kan ändra och radera sig själv i Firebase
+
 export class Task {
   public readonly id: string;
   public readonly title: string;
@@ -69,7 +71,7 @@ export class Task {
 
     this.priority = newPriority;
   }
-  // tilldela medlem efter att uppgift skapats
+
   async assignMember(memberId: string): Promise<void> {
     if (this.taskStatus === "done") {
       throw new Error("Cannot assign a completed task");
@@ -108,7 +110,6 @@ export class Task {
     await updateActiveTasks(memberId, 1);
   }
 
-  // Markerar uppgiften som klar och sparar när den blev klar
   async complete(): Promise<void> {
     if (this.taskStatus === "done") {
       throw new Error("Task is already completed");

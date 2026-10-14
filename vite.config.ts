@@ -1,6 +1,7 @@
+// Vite-inställningar: alla HTML-sidor måste listas här för att komma med i bygget (Netlify)
+
 import { defineConfig } from "vite";
 
-// Alla HTML-sidor måste listas här för att komma med i bygget (Netlify)
 export default defineConfig({
   build: {
     rollupOptions: {

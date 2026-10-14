@@ -1,3 +1,5 @@
+// Skapar ett kort för en arkiverad uppgift som visas på arkivsidan
+
 import type { ArchivedTask } from "../types/types"
 
 export function createArchivedTaskCard(archive: ArchivedTask, projectName: string, memberName: string){

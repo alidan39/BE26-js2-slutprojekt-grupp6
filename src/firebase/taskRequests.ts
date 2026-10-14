@@ -1,3 +1,5 @@
+// Firebase-anrop för uppgifter: hämta alla och skapa nya
+
 import { BASE_URL } from './config.ts';
 import { addTaskToProject } from './projectRequests.ts';
 import { Task } from '../classes/Task.ts';
