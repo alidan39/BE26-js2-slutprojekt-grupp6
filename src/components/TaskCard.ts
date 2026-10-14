@@ -1,6 +1,7 @@
 import { Task } from "../classes/Task";
 import type { Member } from "../types/types";
 
+// Skapar HTML för ett uppgiftskort med information och relevanta knappar.
 export function TaskCard(task: Task, projectMembers: Member[]): string {
   const member = projectMembers.find((member) => member.id === task.memberId);
 

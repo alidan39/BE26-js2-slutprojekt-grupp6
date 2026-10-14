@@ -27,7 +27,7 @@ export function sortByTitleAZ(tasks: Task[]): Task[] {
 export function sortByTitleZA(tasks: Task[]): Task[] {
   return [...tasks].sort((a, b) => b.title.localeCompare(a.title));
 }
-
+// Filtrerar uppgifterna efter kategori och medlem och sorterar dem enligt valt alternativ.
 export function applyTaskFilters(
   tasks: Task[],
   category: string,

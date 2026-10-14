@@ -1,6 +1,7 @@
 import { Task } from "../classes/Task";
 import type { Priority } from "../types/types";
 
+// Kopplar händelser till uppgifter.
 export function setupTaskActions(
   getProjectTasks: () => Task[],
   projectId: string,

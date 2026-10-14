@@ -1,5 +1,5 @@
 import type { Category, Priority } from "../types/types";
-
+// Hämtar värderna från formuläret och ger tillbaka dem som ett objekt.
 export function getTaskFormValues() {
   const titleInput = document.getElementById("taskTitle") as HTMLInputElement;
   const descriptionInput = document.getElementById(

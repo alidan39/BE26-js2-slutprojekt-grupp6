@@ -37,6 +37,7 @@ const archiveProjectBtn = document.getElementById(
   "archiveProjectBtn",
 ) as HTMLButtonElement;
 
+// Hämtar projektets data och uppdaterar projektinformationen och uppgiftsvyn.
 async function loadProject(): Promise<void> {
   try {
     const projects = await getProjects();
@@ -44,6 +45,7 @@ async function loadProject(): Promise<void> {
     const project = projects.find((project) => project.id === projectId);
 
     if (!project) {
+      alert("Project not found.");
       return;
     }
 
@@ -68,7 +70,7 @@ async function loadProject(): Promise<void> {
       projectDeadline.textContent = `Deadline: ${project.deadline}`;
     }
 
-    // Ett arkiverat projekt kan inte arkiveras igen
+    // Ett arkiverat projekt kan inte arkiveras igen.
     if (project.archived) {
       archiveProjectBtn.disabled = true;
       archiveProjectBtn.textContent = "Archived";
@@ -115,6 +117,7 @@ async function loadProject(): Promise<void> {
   }
 }
 
+// Filtrerar och sorterar uppgifterna innan de visas på sidan.
 function updateTaskView(): void {
   const filteredAndSortedTasks = applyTaskFilters(
     projectTasks,
