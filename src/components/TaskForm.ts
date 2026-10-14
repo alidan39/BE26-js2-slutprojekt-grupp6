@@ -14,16 +14,12 @@ export function getTaskFormValues() {
   const deadlineInput = document.getElementById(
     "taskDeadline",
   ) as HTMLInputElement;
-  const memberInput = document.getElementById(
-    "taskMember",
-  ) as HTMLSelectElement;
 
   const title = titleInput.value;
   const description = descriptionInput.value;
   const category = categoryInput.value as Category;
   const priority = Number(priorityInput.value) as Priority;
   const deadline = deadlineInput.value;
-  const memberId = memberInput.value;
 
   return {
     title,
@@ -31,6 +27,5 @@ export function getTaskFormValues() {
     category,
     priority,
     deadline,
-    memberId,
   };
 }

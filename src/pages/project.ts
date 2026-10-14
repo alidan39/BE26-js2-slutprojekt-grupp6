@@ -2,7 +2,7 @@ import type { FirebaseTask, Member } from "../types/types";
 import { Task } from "../classes/Task";
 import { getProjects, archiveProject } from "../firebase/projectRequests";
 import { getTasks, postTask } from "../firebase/taskRequests";
-import { getMembers, updateActiveTasks } from "../firebase/memberRequests";
+import { getMembers } from "../firebase/memberRequests";
 import { getTaskFormValues } from "../components/TaskForm";
 
 import { renderTasks } from "../components/taskRenderer";
@@ -20,14 +20,6 @@ let projectTasks: Task[] = [];
 const projectName = document.getElementById("projectName");
 const projectDescription = document.getElementById("projectDescription");
 const projectDeadline = document.getElementById("projectDeadline");
-
-const taskCategorySelect = document.getElementById(
-  "taskCategory",
-) as HTMLSelectElement;
-
-const taskMemberSelect = document.getElementById(
-  "taskMember",
-) as HTMLSelectElement;
 
 const categoryFilter = document.getElementById(
   "categoryFilter",
@@ -178,33 +170,16 @@ archiveProjectBtn.addEventListener("click", async () => {
   }
 });
 
-// CVälj medlem baserat på kategori.
-taskCategorySelect.addEventListener("change", () => {
-  taskMemberSelect.innerHTML = `
-      <option value="">Choose member</option>
-    `;
-
-  projectMembers
-    .filter((member) => member.category === taskCategorySelect.value)
-    .forEach((member) => {
-      taskMemberSelect.innerHTML += `
-          <option value="${member.id}">
-            ${member.name}
-          </option>
-        `;
-    });
-});
-
 // Skapa uppgift.
+
 if (taskForm) {
   taskForm.addEventListener("submit", async (event) => {
     event.preventDefault();
 
-    const { title, description, category, priority, deadline, memberId } =
+    const { title, description, category, priority, deadline } =
       getTaskFormValues();
 
-    const taskStatus = memberId ? "in-progress" : "new";
-
+    const taskStatus = "new";
     const createdAt = Date.now();
 
     const newTask: FirebaseTask = {
@@ -215,7 +190,6 @@ if (taskForm) {
       priority,
       deadline,
       createdAt,
-      memberId: memberId || undefined,
     };
 
     if (!projectId) {
@@ -225,17 +199,11 @@ if (taskForm) {
     try {
       await postTask(newTask, projectId);
 
-      // Uppgiften skapas direkt som in-progress, så medlemmen får en aktiv uppgift till
-      if (memberId) {
-        await updateActiveTasks(memberId, 1);
-      }
-
       taskForm.reset();
 
       await loadProject();
     } catch (error) {
       console.error(error);
-
       alert("Could not create task. Please try again.");
     }
   });
