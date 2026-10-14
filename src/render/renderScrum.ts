@@ -5,7 +5,9 @@ const inProgressGrid = document.querySelector('#inProgressGrid') as HTMLDivEleme
 const doneGrid = document.querySelector('#doneGrid') as HTMLDivElement
 
 export async function renderTaskGrid(){
-    
+
+    if (!newGrid || !inProgressGrid || !doneGrid) return
+
     try {
       const tasks = await getTasks()
 
