@@ -96,13 +96,7 @@ h1 {
   transform: rotate(360deg);
   text-shadow: 0 0 10px #ff4d6d;
 }
-/*
-#newProjectForm, #newMemberForm {
-  display: flex;
-  flex-direction: column;
-  gap: 1px 5px;
-}
-*/
+
 h2 {
   text-align: center;
   margin-bottom: 15px;
@@ -205,19 +199,14 @@ main {
   align-items: flex-start;
   flex: 1;
   justify-content: center;
-  margin-top: 2rem;
-}
-
-.gridSection {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+  align-items: flex-start;
+  margin-top: 8rem;
 }
 
 .gridWrapper {
   display: grid;
   grid-template-columns: repeat(3, 400px);
-  grid-template-rows: 50px 350px;
+  grid-template-rows: 70px 250px;
 }
 
 .div1,
@@ -252,6 +241,22 @@ footer {
   padding: 20px 0;
   /*  box-shadow: 1px 1px 15px #a738c9;*/
   box-shadow: 1px 1px 15px #6b38c9;
+}
+
+/*---------ERROR Hantering----------*/
+.error {
+  color: #ff6b6b;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+#memberError,
+#projectError {
+  display: none;
+  color: #ff7b7b;
+  text-align: center;
+  margin-bottom: 10px;
+  font-weight: bold;
 }
 
 /*----------EXTERN HTML FILES---------*/
