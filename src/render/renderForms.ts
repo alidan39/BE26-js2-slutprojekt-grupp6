@@ -1,5 +1,5 @@
 import {getMembers, postMember} from "../firebase/memberRequests.ts"
-import type { Category } from "../types/types.ts"
+import type { Category, Project } from "../types/types.ts"
 import {getProjects, postProject} from "../firebase/projectRequests.ts"
 import { getTasks } from "../firebase/taskRequests.ts"
 import type { Task } from "../classes/Task.ts"
@@ -55,7 +55,7 @@ projectForm?.addEventListener('submit', async (event) => {
     }
 
     //Checkboxes för members
-    const checkedMembers = document.querySelectorAll('#addMembersWrapper input:checked')
+    const checkedMembers = document.querySelectorAll('#addMemberWrapper input:checked')
     const memberIds = Array.from(checkedMembers).map(checkbox => (checkbox as HTMLInputElement).value)
 
     const newProject = {
@@ -101,10 +101,12 @@ export async function renderAllProjects() {
 
     try {
         const allProjects = await getProjects()
+        const allTasks = await getTasks()
+        const activeProjects = allProjects.filter(project => !project.archived)
 
         //Loopa igenom varje member card
-        allProjects.forEach(project => {
-          const pCard = createProjectCard(project)
+        activeProjects.forEach(project => {
+          const pCard = createProjectCard(project, countActiveTasks(project, allTasks))
           allProjectsWrapper.appendChild(pCard)
         })
     }
@@ -181,11 +183,14 @@ export async function renderAllMembers() {
     try {
         const allMembers = await getMembers()
         const allProjects = await getProjects()
+        const activeProjects = allProjects.filter(project => !project.archived)
 
-        //Loopa igenom varje member card + total projects for members
+        //Loopa igenom varje member card + projects for members
         allMembers.forEach(member => {
-          const totalProjects = allProjects.filter(project =>project.memberIds.includes(member.id)).length
-          const mCard = createMemberCard(member, totalProjects)
+          const projectNames = activeProjects
+            .filter(project => project.memberIds.includes(member.id))
+            .map(project => project.name)
+          const mCard = createMemberCard(member, projectNames)
         
           allMembersWrapper.appendChild(mCard)
         })
