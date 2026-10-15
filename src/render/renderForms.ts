@@ -1,3 +1,4 @@
+// verifieying members, task count and render project and member forms
 import {getMembers, postMember} from "../firebase/memberRequests.ts"
 import type { Category, Project } from "../types/types.ts"
 import {getProjects, postProject} from "../firebase/projectRequests.ts"
@@ -20,13 +21,11 @@ const mName = document.querySelector('#mName') as HTMLInputElement
 
 const projectError = document.querySelector('#projectError') as HTMLParagraphElement
 const memberError = document.querySelector('#memberError') as HTMLParagraphElement
-// Räknar hur många av projektets uppgifter som är pågående
+
 function countActiveTasks(project: Project, tasks: Task[]) {
     return tasks.filter(task => project.taskIds.includes(task.id) && task.taskStatus === 'in-progress').length
 }
 
-
-// verifiuerad medlem som ska kunna väljas i options
 export async function renderMemberOptions() {
 
     const members = await getMembers()
@@ -54,7 +53,6 @@ projectForm?.addEventListener('submit', async (event) => {
         return
     }
 
-    //Checkboxes för members
     const checkedMembers = document.querySelectorAll('#addMemberWrapper input:checked')
     const memberIds = Array.from(checkedMembers).map(checkbox => (checkbox as HTMLInputElement).value)
 
@@ -71,7 +69,6 @@ projectForm?.addEventListener('submit', async (event) => {
         projectError.innerText = ''
 
         await postProject(newProject)
-        //await renderAllProjects()
         projectForm.reset()
 
         console.log(`
@@ -93,7 +90,6 @@ export async function renderAllProjects() {
     const allProjectsWrapper = document.querySelector('#allProjectsWrapper')
 
     if (!allProjectsWrapper){
-        //console.error('allProjectsWrapper could not be found')
         return
     }
 
@@ -104,7 +100,6 @@ export async function renderAllProjects() {
         const allTasks = await getTasks()
         const activeProjects = allProjects.filter(project => !project.archived)
 
-        //Loopa igenom varje member card
         activeProjects.forEach(project => {
           const pCard = createProjectCard(project, countActiveTasks(project, allTasks))
           allProjectsWrapper.appendChild(pCard)
@@ -135,7 +130,7 @@ memberForm?.addEventListener('submit', async (event) => {
         return
       }
 
-    const category = selectedCategory.value as Category // Interface
+    const category = selectedCategory.value as Category
 
     const newMember = {
         name: mName.value,
@@ -168,13 +163,11 @@ memberForm?.addEventListener('submit', async (event) => {
 
 })
 
-//Rendera allmembers
 export async function renderAllMembers() {
 
     const allMembersWrapper = document.querySelector('#allMembersWrapper')
 
     if (!allMembersWrapper) {
-        //console.error('allMembersWrapper could not be found')
         return
     }
 
@@ -185,7 +178,6 @@ export async function renderAllMembers() {
         const allProjects = await getProjects()
         const activeProjects = allProjects.filter(project => !project.archived)
 
-        //Loopa igenom varje member card + projects for members
         allMembers.forEach(member => {
           const projectNames = activeProjects
             .filter(project => project.memberIds.includes(member.id))
@@ -231,7 +223,6 @@ export async function renderArchivedTasks() {
     const allMembers = await getMembers()
 
     archives.forEach(archive => {
-        // Arkivet har bara id:n, så vi letar upp namnen
         const project = allProjects.find(project => project.id === archive.projectId)
         const member = allMembers.find(member => member.id === archive.task.memberId)
 

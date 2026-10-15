@@ -1,3 +1,4 @@
+// Member Card shell
 import type { Member} from "../types/types";
 
 export function createMemberCard(member: Member, projectNames: string[]){

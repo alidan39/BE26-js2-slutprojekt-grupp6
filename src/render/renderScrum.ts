@@ -1,3 +1,4 @@
+// Render status of tasks to index.html
 import { getTasks } from '../firebase/taskRequests.ts'
 
 const newGrid = document.querySelector('#newGrid') as HTMLDivElement
