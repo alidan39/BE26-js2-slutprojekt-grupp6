@@ -13,7 +13,7 @@ export function createArchivedTaskCard(archive: ArchivedTask, projectName: strin
     const completedDate = task.completedAt ? new Date(task.completedAt).toLocaleDateString() : '-'
 
     archivedTaskCard.innerHTML = `
-      <a class="projectLinkDiv" href="project.html?id=${archive.projectId}">
+      <div class="projectLinkDiv">
         <h3 id="boldH3">${task.title}</h3>
         <p><b id="bold">Project: </b>${projectName}</p>
         <p><b id="bold">Task Description:</b></p>
@@ -23,7 +23,7 @@ export function createArchivedTaskCard(archive: ArchivedTask, projectName: strin
         <p><b id="bold">Completed: </b>${completedDate}</p>
         <p><b id="bold">Deadline: </b>${task.deadline}</p>
         <p><b id="bold">Completed by: </b>${memberName}</p>
-      </a>
+      </div>
     `
     return archivedTaskCard
 }

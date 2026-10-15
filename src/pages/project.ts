@@ -16,6 +16,7 @@ const projectId = params.get("id");
 
 let projectMembers: Member[] = [];
 let projectTasks: Task[] = [];
+let isArchived = false;
 
 const projectName = document.getElementById("projectName");
 const projectDescription = document.getElementById("projectDescription");
@@ -32,6 +33,10 @@ const memberFilter = document.getElementById(
 const sortTasks = document.getElementById("sortTasks") as HTMLSelectElement;
 
 const taskForm = document.getElementById("taskForm") as HTMLFormElement;
+
+const createTaskSection = document.querySelector(
+  ".create-task-section",
+) as HTMLElement;
 
 const archiveProjectBtn = document.getElementById(
   "archiveProjectBtn",
@@ -71,9 +76,12 @@ async function loadProject(): Promise<void> {
     }
 
     // Ett arkiverat projekt kan inte arkiveras igen.
-    if (project.archived) {
+    isArchived = project.archived;
+
+    if (isArchived) {
       archiveProjectBtn.disabled = true;
       archiveProjectBtn.textContent = "Archived";
+      createTaskSection.style.display = "none";
     }
 
     memberFilter.innerHTML = `
@@ -127,6 +135,16 @@ function updateTaskView(): void {
   );
 
   renderTasks(filteredAndSortedTasks, projectMembers);
+
+  if (isArchived) {
+    document
+      .querySelectorAll(
+        ".task-columns select, .task-columns input, .task-columns button",
+      )
+      .forEach((element) => {
+        (element as HTMLInputElement).disabled = true;
+      });
+  }
 }
 
 function getProjectTasks(): Task[] {
@@ -152,6 +170,15 @@ sortTasks.addEventListener("change", () => {
 // Arkivera projekt.
 archiveProjectBtn.addEventListener("click", async () => {
   if (!projectId) {
+    return;
+  }
+
+  const hasActiveTasks = projectTasks.some(
+    (task) => task.taskStatus === "in-progress",
+  );
+
+  if (hasActiveTasks) {
+    alert("Complete all tasks in progress before archiving the project.");
     return;
   }
 

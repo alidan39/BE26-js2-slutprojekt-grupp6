@@ -1,5 +1,6 @@
 // Render status of tasks to index.html
 import { getTasks } from '../firebase/taskRequests.ts'
+import { getProjects } from '../firebase/projectRequests.ts'
 
 const newGrid = document.querySelector('#newGrid') as HTMLDivElement
 const inProgressGrid = document.querySelector('#inProgressGrid') as HTMLDivElement
@@ -11,10 +12,16 @@ export async function renderTaskGrid(){
 
     try {
       const tasks = await getTasks()
+      const projects = await getProjects()
 
-      const newTasks = tasks.filter(task => task.taskStatus === 'new')
-      const inProgressTasks = tasks.filter(task => task.taskStatus === 'in-progress')
-      const doneTasks = tasks.filter(task => task.taskStatus === 'done')
+      const activeProjects = projects.filter(project => !project.archived)
+      const activeTasks = tasks.filter(task =>
+        activeProjects.some(project => project.taskIds.includes(task.id))
+      )
+
+      const newTasks = activeTasks.filter(task => task.taskStatus === 'new')
+      const inProgressTasks = activeTasks.filter(task => task.taskStatus === 'in-progress')
+      const doneTasks = activeTasks.filter(task => task.taskStatus === 'done')
 
       newGrid.textContent = String(newTasks.length)
       inProgressGrid.textContent = String(inProgressTasks.length)
