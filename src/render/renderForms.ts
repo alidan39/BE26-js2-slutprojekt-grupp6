@@ -105,7 +105,7 @@ export async function renderAllProjects() {
         const activeProjects = allProjects.filter(project => !project.archived)
 
         //Loopa igenom varje member card
-        allProjects.forEach(project => {
+        activeProjects.forEach(project => {
           const pCard = createProjectCard(project, countActiveTasks(project, allTasks))
           allProjectsWrapper.appendChild(pCard)
         })
@@ -183,11 +183,14 @@ export async function renderAllMembers() {
     try {
         const allMembers = await getMembers()
         const allProjects = await getProjects()
+        const activeProjects = allProjects.filter(project => !project.archived)
 
-        //Loopa igenom varje member card + total projects for members
+        //Loopa igenom varje member card + projects for members
         allMembers.forEach(member => {
-          const totalProjects = allProjects.filter(project =>project.memberIds.includes(member.id)).length
-          const mCard = createMemberCard(member, totalProjects)
+          const projectNames = activeProjects
+            .filter(project => project.memberIds.includes(member.id))
+            .map(project => project.name)
+          const mCard = createMemberCard(member, projectNames)
         
           allMembersWrapper.appendChild(mCard)
         })
@@ -203,7 +206,6 @@ export async function renderAllMembers() {
     }
 }
 
-//Rendera arkiverade projekt
 export async function renderArchivedProjects() {
     const archivedProjectsWrapper = document.querySelector('#archivedProjectsWrapper')
 
@@ -219,7 +221,6 @@ export async function renderArchivedProjects() {
     })
 }
 
-//Rendera arkiverade uppgifter
 export async function renderArchivedTasks() {
     const archivedTasksWrapper = document.querySelector('#archivedTasksWrapper')
 

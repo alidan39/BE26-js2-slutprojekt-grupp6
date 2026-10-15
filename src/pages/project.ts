@@ -2,7 +2,7 @@ import type { FirebaseTask, Member } from "../types/types";
 import { Task } from "../classes/Task";
 import { getProjects, archiveProject } from "../firebase/projectRequests";
 import { getTasks, postTask } from "../firebase/taskRequests";
-import { getMembers, updateActiveTasks } from "../firebase/memberRequests";
+import { getMembers } from "../firebase/memberRequests";
 import { getTaskFormValues } from "../components/TaskForm";
 
 import { renderTasks } from "../components/taskRenderer";
@@ -21,14 +21,6 @@ const projectName = document.getElementById("projectName");
 const projectDescription = document.getElementById("projectDescription");
 const projectDeadline = document.getElementById("projectDeadline");
 
-const taskCategorySelect = document.getElementById(
-  "taskCategory",
-) as HTMLSelectElement;
-
-const taskMemberSelect = document.getElementById(
-  "taskMember",
-) as HTMLSelectElement;
-
 const categoryFilter = document.getElementById(
   "categoryFilter",
 ) as HTMLSelectElement;
@@ -45,6 +37,7 @@ const archiveProjectBtn = document.getElementById(
   "archiveProjectBtn",
 ) as HTMLButtonElement;
 
+// Hämtar projektets data och uppdaterar projektinformationen och uppgiftsvyn.
 async function loadProject(): Promise<void> {
   try {
     const projects = await getProjects();
@@ -52,6 +45,7 @@ async function loadProject(): Promise<void> {
     const project = projects.find((project) => project.id === projectId);
 
     if (!project) {
+      alert("Project not found.");
       return;
     }
 
@@ -76,7 +70,7 @@ async function loadProject(): Promise<void> {
       projectDeadline.textContent = `Deadline: ${project.deadline}`;
     }
 
-    // Ett arkiverat projekt kan inte arkiveras igen
+    // Ett arkiverat projekt kan inte arkiveras igen.
     if (project.archived) {
       archiveProjectBtn.disabled = true;
       archiveProjectBtn.textContent = "Archived";
@@ -123,6 +117,7 @@ async function loadProject(): Promise<void> {
   }
 }
 
+// Filtrerar och sorterar uppgifterna innan de visas på sidan.
 function updateTaskView(): void {
   const filteredAndSortedTasks = applyTaskFilters(
     projectTasks,
@@ -178,33 +173,16 @@ archiveProjectBtn.addEventListener("click", async () => {
   }
 });
 
-// CVälj medlem baserat på kategori.
-taskCategorySelect.addEventListener("change", () => {
-  taskMemberSelect.innerHTML = `
-      <option value="">Choose member</option>
-    `;
-
-  projectMembers
-    .filter((member) => member.category === taskCategorySelect.value)
-    .forEach((member) => {
-      taskMemberSelect.innerHTML += `
-          <option value="${member.id}">
-            ${member.name}
-          </option>
-        `;
-    });
-});
-
 // Skapa uppgift.
+
 if (taskForm) {
   taskForm.addEventListener("submit", async (event) => {
     event.preventDefault();
 
-    const { title, description, category, priority, deadline, memberId } =
+    const { title, description, category, priority, deadline } =
       getTaskFormValues();
 
-    const taskStatus = memberId ? "in-progress" : "new";
-
+    const taskStatus = "new";
     const createdAt = Date.now();
 
     const newTask: FirebaseTask = {
@@ -215,7 +193,6 @@ if (taskForm) {
       priority,
       deadline,
       createdAt,
-      memberId: memberId || undefined,
     };
 
     if (!projectId) {
@@ -225,17 +202,11 @@ if (taskForm) {
     try {
       await postTask(newTask, projectId);
 
-      // Uppgiften skapas direkt som in-progress, så medlemmen får en aktiv uppgift till
-      if (memberId) {
-        await updateActiveTasks(memberId, 1);
-      }
-
       taskForm.reset();
 
       await loadProject();
     } catch (error) {
       console.error(error);
-
       alert("Could not create task. Please try again.");
     }
   });

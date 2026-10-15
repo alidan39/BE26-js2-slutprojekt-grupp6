@@ -1,4 +1,6 @@
-export type Category = 'frontend' | 'backend' | 'ux';
+// Typer för datan, både som den används i appen och som den ligger i Firebase
+
+export type Category ='frontend' | 'backend' | 'ux';
 export type TaskStatus = 'new' | 'in-progress' | 'done';
 export type Priority = 1 | 2 | 3;
 

@@ -1,7 +1,7 @@
 import { Task } from "../classes/Task";
 import { TaskCard } from "./TaskCard";
 import type { Member } from "../types/types";
-
+// Delar uppgifterna efter status och visar dem i rätt kolumn.
 export function renderTasks(tasks: Task[], projectMembers: Member[]): void {
   const newTasks = tasks.filter((task) => task.taskStatus === "new");
 
