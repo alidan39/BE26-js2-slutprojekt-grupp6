@@ -6,7 +6,7 @@ I appen kan användaren skapa och hantera projekt, medlemmar och uppgifter. Uppg
 
 ## Live demo
 
-[Öppna Scrum Board på Netlify](länk)
+[Öppna Scrum Board på Netlify](https://be26-js2-slutprojekt-grupp6.netlify.app/)
 
 ## Kodstruktur
 
